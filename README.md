@@ -32,12 +32,12 @@ The project allows the developers to build the image using handy make CLI.
 # cp $IMAGE_NAME images/
 ```
 
-4. Calculate the sha of the target VM image
+4. Calculate the checksum of the target VM image
 ```bash
 # sha256sum images/$IMAGE_NAME
 ```
 
-5. Copy and paste the calculated sha to the corresponding configuration file. We provide the configuration file for each linux distro. Put the sha value into ```iso_checksum``` to replace original value.
+5. Copy and paste the calculated checksum to the corresponding configuration file. We provide the configuration file for each linux distro. Put the checksum value into ```iso_checksum``` to replace the original value.
 ```json
 {
   "build_name": "ubuntu-1804",
