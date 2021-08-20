@@ -27,18 +27,44 @@ The project allows the developers to build the image using handy make CLI.
 # make deps-qemu
 ```
 
-3. Build ubuntu-18.04 image
+3. Place the base or preprossed golden VM image under images directory
+```bash
+# cp $IMAGE_NAME images/
+```
+
+4. Calculate the sha of the target VM image
+```bash
+# sha256sum images/$IMAGE_NAME
+```
+
+5. Copy and paste the calculated sha to the corresponding configuration file. We provide the configuration file for each linux distro. Put the sha value into ```iso_checksum``` to replace original value.
+```json
+{
+  "build_name": "ubuntu-1804",
+  "distro_name": "ubuntu",
+  "ssh_username": "ubuntu",
+  "os_display_name": "Ubuntu 18.04",
+  "guest_os_type": "ubuntu-64",
+  "iso_url": "images/ubuntu-1804.qcow2",
+  "iso_checksum": "50c38d3f7307fe770c15a69b316d0001ac28e484239218d23e1ca8c8e7ec9a10",
+  "iso_checksum_type": "sha256",
+  "shutdown_command": "shutdown -P now",
+  "ansible_python_interpreter": "/usr/bin/python3"
+}
+```
+
+6. Build ubuntu-18.04 golden image
 ```bash
 # make build-qemu-ubuntu-1804
 ```
 The built image will be located under output directory.
 
-4. Clean built images
+7. Clean built images
 ```bash
 # make clean-qemu
 ```
 
-5. Clean packer cache
+8. Clean packer cache
 ```bash
 # make clean-packer-cache
 ```
