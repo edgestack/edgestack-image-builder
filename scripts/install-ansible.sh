@@ -10,6 +10,11 @@ if [ $os_distro == "centos" ]; then
 elif [ $os_distro == "ubuntu" ]; then
     apt-get -y update
     apt-get -y install ansible
+elif [ $os_distro == "rocky" ]; then
+    dnf -y makecache
+    dnf install -y epel-release
+    dnf -y makecache
+    dnf install -y ansible
 else
     echo "Unsupported OS"
 fi

@@ -49,9 +49,11 @@ PACKER_VAR_FILES := $(foreach f,$(abspath $(PACKER_VAR_FILES)),-var-file="$(f)" 
 ## --------------------------------------
 CENTOS_VERSIONS		:=	centos-7
 UBUNTU_VERSIONS		:=	ubuntu-1804 ubuntu-2004
+ROCKY_VERSIONS          :=      rocky-8
 
 PLATFORMS_AND_VERSIONS	:=	$(CENTOS_VERSIONS) \
-				$(UBUNTU_VERSIONS)
+				$(UBUNTU_VERSIONS) \
+                                $(ROCKY_VERSIONS)
 
 QEMU_BUILD_NAMES	:=	$(addprefix qemu-,$(PLATFORMS_AND_VERSIONS))
 
@@ -79,6 +81,7 @@ $(QEMU_CLEAN_TARGETS):
 build-qemu-ubuntu-1804: ## Builds Ubuntu 18.04 QEMU image
 build-qemu-ubuntu-2004: ## Builds Ubuntu 20.02 QEMU image
 build-qemu-centos-7:    ## Builds CentOS 7 QEMU image
+build-qemu-rocky-8:     ## Builds Rocky 8 QEMU image
 
 ## --------------------------------------
 ## Clean targets

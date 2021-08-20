@@ -20,7 +20,7 @@
           "cpus={{ user `cpus` }}"
         ],
         [
-          "-fda",
+          "-cdrom",
           "{{ user `cloud_init_image` }}"
         ],
         [
@@ -32,6 +32,7 @@
       "ssh_port": "{{ user `ssh_port` }}",
       "ssh_timeout": "2h",
       "ssh_username": "{{ user `ssh_username` }}",
+      "boot_wait": "60s",
       "type": "qemu",
       "use_default_display": false,
       "vm_name": "{{user `build_name`}}.qcow2"

@@ -12,6 +12,11 @@ elif [ $os_distro == "ubuntu" ]; then
     apt-get -y remove ansible
     apt-get -y autoremove
     rm -rf /tmp/*
+elif [ $os_distro == "rocky" ]; then
+    dnf remove -y ansible
+    dnf remove -y epel-release
+    dnf -y makecache
+    rm -rf /tmp/*
 else
     echo "Unsupported OS"
 fi

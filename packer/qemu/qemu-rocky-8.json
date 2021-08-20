@@ -1,0 +1,12 @@
+{
+  "build_name": "rocky-8",
+  "distro_name": "rocky",
+  "ssh_username": "rocky",
+  "os_display_name": "Rocky 8.4",
+  "guest_os_type": "linux-64",
+  "iso_url": "images/rocky-8.qcow2",
+  "iso_checksum": "9f1d55a3b8672b1bb08cc9318c12a75fcf3b9152fd63f021c92fe6272ba97bcb",
+  "iso_checksum_type": "sha256",
+  "shutdown_command": "shutdown -P now",
+  "ansible_python_interpreter": "/usr/bin/python3"
+}
