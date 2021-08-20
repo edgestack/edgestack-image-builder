@@ -1,0 +1,36 @@
+---
+  - block:
+    - name: Copy qemu-guest-agent binary
+      copy:
+        src: "{{ role_path }}/files/qemu-guest-agent-3.1.0-1.1.el7.x86_64.rpm"
+        dest: "/tmp/qemu-guest-agent-3.1.0-1.1.el7.x86_64.rpm"
+        mode: 0400
+      become: true
+
+    - name: Uninstall old qemu-guest-agent
+      yum:
+        name: "qemu-guest-agent"
+        state: absent
+      become: true
+
+    - name: Install qemu-guest-agent
+      yum:
+        name: "/tmp/qemu-guest-agent-3.1.0-1.1.el7.x86_64.rpm"
+        state: present
+      become: true
+
+    - name: Remove logfile options
+      replace:
+        path: /usr/lib/systemd/system/qemu-ga.service
+        regexp: "syslog"
+        replace: "/var/log/qemu-ga.log"
+      become: true
+
+    - name: Restart qemu-guest-agent daemon
+      service:
+        name: qemu-ga
+        state: restarted
+        enabled: yes
+      become: true
+
+    when: ansible_distribution_major_version == "7"

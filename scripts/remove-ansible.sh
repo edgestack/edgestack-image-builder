@@ -7,7 +7,7 @@ os_distro="${os_distro#\"}"
 if [ $os_distro == "centos" ]; then
     yum remove -y ansible
     rm -rf /tmp/*
-    yum remove -y epel-release
+    rm -rf /root/*.rpm
 elif [ $os_distro == "ubuntu" ]; then
     apt-get -y remove ansible
     apt-get -y autoremove
