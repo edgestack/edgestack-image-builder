@@ -1,0 +1,21 @@
+---
+- name: Define file modes
+  set_fact:
+    last_log_mode:   "0644"
+    machine_id_mode: "0444"
+
+- name: Remove yum package caches
+  yum:
+    autoremove: yes
+    lock_timeout: 60
+
+- name: Remove yum package lists
+  command: /usr/bin/yum -y clean all
+
+- name: Reset network interface IDs
+  shell: sed -i '/^\(HWADDR\|UUID\)=/d' /etc/sysconfig/network-scripts/ifcfg-*
+
+- name: Remove the kickstart log
+  file:
+    state: absent
+    path: /root/anaconda-ks.cfg

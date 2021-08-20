@@ -1,0 +1,12 @@
+{
+  "build_name": "ubuntu-2004",
+  "distro_name": "ubuntu",
+  "ssh_username": "ubuntu",
+  "os_display_name": "Ubuntu 20.04",
+  "guest_os_type": "ubuntu-64",
+  "iso_url": "images/ubuntu-2004.qcow2",
+  "iso_checksum": "1c0969323b058ba8b91fec245527069c2f0502fc119b9138b213b6bfebd965cb",
+  "iso_checksum_type": "sha256",
+  "shutdown_command": "shutdown -P now",
+  "ansible_python_interpreter": "/usr/bin/python3"
+}
