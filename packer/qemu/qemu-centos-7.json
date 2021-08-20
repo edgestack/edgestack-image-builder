@@ -4,7 +4,7 @@
   "ssh_username": "centos",
   "os_display_name": "CentOS 7.8",
   "guest_os_type": "linux-64",
-  "iso_url": "images/centos7.qcow2",
+  "iso_url": "images/centos-7.qcow2",
   "iso_checksum": "6a9332f258e5b7a670deb0868eb5af7c1b8a5204c843eed466641e7466447448",
   "iso_checksum_type": "sha256",
   "shutdown_command": "shutdown -P now",
