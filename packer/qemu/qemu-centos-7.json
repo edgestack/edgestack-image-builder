@@ -5,7 +5,7 @@
   "os_display_name": "CentOS 7.8",
   "guest_os_type": "linux-64",
   "iso_url": "images/centos-7.qcow2",
-  "iso_checksum": "186deb0ee5a341505b976e2c60142c38bc17cb5dd96f1ad7475aa818268818e7",
+  "iso_checksum": "e38bab0475cc6d004d2e17015969c659e5a308111851b0e2715e84646035bdd3",
   "iso_checksum_type": "sha256",
   "shutdown_command": "shutdown -P now",
   "ansible_python_interpreter": "/usr/bin/python2"

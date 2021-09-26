@@ -85,6 +85,9 @@
   - { path: /var/log, state: absent }
   - { path: /var/log, state: directory }
 
+- import_tasks: el_end.yml
+  when: ansible_os_family == "CentOS" or ansible_os_family == "RedHat" or ansible_os_family == "Rocky"
+
 - name: Truncate shell history
   file:
     state: absent
