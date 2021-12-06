@@ -1,0 +1,12 @@
+{
+  "build_name": "ubuntu-1604",
+  "distro_name": "ubuntu",
+  "ssh_username": "ubuntu",
+  "os_display_name": "Ubuntu 16.04",
+  "guest_os_type": "ubuntu-64",
+  "iso_url": "images/ubuntu-1604.qcow2",
+  "iso_checksum": "fff2494a70bcaffb59f26f71ec49e137dd87d319341c35832dbe0ea65ff15140",
+  "iso_checksum_type": "sha256",
+  "shutdown_command": "shutdown -P now",
+  "ansible_python_interpreter": "/usr/bin/python3"
+}
