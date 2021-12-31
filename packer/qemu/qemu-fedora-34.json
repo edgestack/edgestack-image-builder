@@ -1,0 +1,12 @@
+{
+  "build_name": "fedora-34",
+  "distro_name": "fedora",
+  "ssh_username": "fedora",
+  "os_display_name": "Fedora 34",
+  "guest_os_type": "linux-64",
+  "iso_url": "images/fedora-34.qcow2",
+  "iso_checksum": "b9b621b26725ba95442d9a56cbaa054784e0779a9522ec6eafff07c6e6f717ea",
+  "iso_checksum_type": "sha256",
+  "shutdown_command": "shutdown -P now",
+  "ansible_python_interpreter": "/usr/bin/python3"
+}

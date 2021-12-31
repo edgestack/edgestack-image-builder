@@ -17,6 +17,9 @@ elif [ $os_distro == "rocky" ]; then
     dnf install -y epel-release
     dnf -y makecache
     dnf install -y ansible
+elif [ $os_distro == "fedora" ]; then
+    dnf -y makecache
+    dnf install -y ansible
 else
     echo "Unsupported OS"
 fi
