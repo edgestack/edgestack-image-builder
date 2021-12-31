@@ -9,6 +9,7 @@ Supported Host OS:
 Supported Guest OS:
 * CentOS 7
 * Rocky 8
+* Ubuntu 16.04
 * Ubuntu 18.04
 * Ubuntu 20.04
 
