@@ -1,0 +1,6 @@
+---
+- include_tasks: el_main.yml
+  when: ansible_distribution == "CentOS"
+
+- include_tasks: rk_main.yml
+  when: ansible_distribution == "Rocky"

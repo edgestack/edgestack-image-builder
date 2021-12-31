@@ -68,6 +68,11 @@ $(QEMU_BUILD_TARGETS):
 	packer build $(PACKER_NODE_FLAGS) -var-file="$(abspath packer/qemu/$(subst build-,,$@).json)" $(PACKER_VAR_FILES) packer/qemu/packer.json
 .PHONY: $(QEMU_BUILD_TARGETS)
 
+QEMU_BUILD_RT_TARGETS   := $(addsuffix -rt,$(QEMU_BUILD_TARGETS))
+$(QEMU_BUILD_RT_TARGETS):
+	packer build $(PACKER_NODE_FLAGS) -var-file="$(abspath packer/qemu/$(subst build-,,$@).json)" $(PACKER_VAR_FILES) packer/qemu/packer-rt.json
+.PHONY: $(QEMU_BUILD_RT_TARGETS)
+
 ## --------------------------------------
 ## Dynamic clean targets
 ## --------------------------------------
@@ -86,6 +91,13 @@ build-qemu-ubuntu-2004: ## Builds Ubuntu 20.02 QEMU image
 build-qemu-fedora-34:   ## Builds Fedora 34 QEMU image
 build-qemu-centos-7:    ## Builds CentOS 7 QEMU image
 build-qemu-rocky-8:     ## Builds Rocky 8 QEMU image
+
+build-qemu-ubuntu-1604-rt: ## Builds Ubuntu 16.04 RT QEMU image
+build-qemu-ubuntu-1804-rt: ## Builds Ubuntu 18.04 RT QEMU image
+build-qemu-ubuntu-2004-rt: ## Builds Ubuntu 20.02 RT QEMU image
+build-qemu-fedora-34-rt:   ## Builds Fedora 34 RT QEMU image
+build-qemu-centos-7-rt:    ## Builds CentOS 7 RT QEMU image
+build-qemu-rocky-8-rt:     ## Builds Rocky 8 RT QEMU image
 
 ## --------------------------------------
 ## Clean targets

@@ -1,0 +1,16 @@
+---
+  - block:
+    - name: Copy RT yum repo
+      copy:
+        src: "{{ role_path }}/files/CentOS-rt.repo"
+        dest: "/etc/yum.repos.d/CentOS-rt.repo"
+        mode: 0644
+
+    - name: Install rt dependencies
+      yum:
+        name:
+          - kernel-rt
+          - rt-tests 
+          - tuned-profiles-realtime
+        state: present
+      become: true 
