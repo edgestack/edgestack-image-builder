@@ -34,6 +34,8 @@
       "ssh_username": "{{ user `ssh_username` }}",
       "boot_wait": "60s",
       "type": "qemu",
+      "machine_type": "pc",
+      "skip_compaction": true,
       "use_default_display": false,
       "vm_name": "{{user `build_name`}}.qcow2"
     }
@@ -44,6 +46,13 @@
         "sleep 10",
         "sudo unlink /bin/sh",
         "sudo ln -s /bin/bash /bin/sh"
+      ],
+      "type": "shell"
+    },
+    {
+      "execute_command": "echo 'install RT kernel' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
+      "scripts": [
+        "scripts/install-rt-kernel.sh"
       ],
       "type": "shell"
     },
@@ -59,7 +68,7 @@
         "--extra-vars \"{{user `ansible_common_vars`}} ansible_python_interpreter={{user `ansible_python_interpreter`}}\""
       ],
       "playbook_dir": "./ansible",
-      "playbook_file": "./ansible/node-rt.yml",
+      "playbook_file": "./ansible/node.yml",
       "type": "ansible-local"
     },
     {

@@ -1,8 +1,0 @@
----
-- hosts: all
-  gather_facts: yes
-  become: yes
-  roles:
-    - { role: guest, tags: guest }
-    - { role: rt, tags: rt }
-    - { role: sysprep, tags: sysprep }
