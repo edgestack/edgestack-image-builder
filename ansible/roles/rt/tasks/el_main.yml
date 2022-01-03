@@ -1,12 +1,12 @@
 ---
   - block:
-    - name: Copy RT yum repo
+    - name: Copy CentOS RT yum repo
       copy:
         src: "{{ role_path }}/files/CentOS-rt.repo"
         dest: "/etc/yum.repos.d/CentOS-rt.repo"
         mode: 0644
 
-    - name: Install rt dependencies
+    - name: Install CentOS RT dependencies
       yum:
         name:
           - kernel-rt
