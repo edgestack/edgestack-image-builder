@@ -30,6 +30,7 @@
 - name: Set hostname
   hostname:
     name: localhost.local
+  ignore_errors: true
 
 - name: Truncate audit logs
   file:
