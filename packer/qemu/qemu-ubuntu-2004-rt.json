@@ -1,11 +1,11 @@
 {
-  "build_name": "ubuntu-1804",
+  "build_name": "ubuntu-2004",
   "distro_name": "ubuntu",
   "ssh_username": "ubuntu",
-  "os_display_name": "Ubuntu 18.04",
+  "os_display_name": "Ubuntu 20.04",
   "guest_os_type": "ubuntu-64",
-  "iso_url": "images/ubuntu-1804.qcow2",
-  "iso_checksum": "653c7b98e8c044c1ff790f923f06536ce1297c35d88ddb2659c177ef9b458aa6",
+  "iso_url": "images/ubuntu-2004.qcow2",
+  "iso_checksum": "c33e4d8f8fd52d639aa114b237274da428be7fd95025e20787b11cf77507d111",  
   "iso_checksum_type": "sha256",
   "shutdown_command": "shutdown -P now",
   "ansible_python_interpreter": "/usr/bin/python3"

@@ -56,11 +56,13 @@
     },
     {
       "extra_arguments": [
-        "--extra-vars \"{{user `ansible_common_vars`}} ansible_python_interpreter={{user `ansible_python_interpreter`}}\""
+        "--extra-vars",
+        "{{user `ansible_common_vars`}}",
+        "--extra-vars",
+        "{{user `ansible_extra_vars`}}"
       ],
-      "playbook_dir": "./ansible",
       "playbook_file": "./ansible/node.yml",
-      "type": "ansible-local"
+      "type": "ansible"
     },
     {
       "execute_command": "echo 'remove ansible' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
