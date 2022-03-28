@@ -4,4 +4,5 @@
   become: yes
   roles:
     - { role: guest, tags: guest }
+    - { role: node_exporter, tags: node_exporter }
     - { role: sysprep, tags: sysprep }

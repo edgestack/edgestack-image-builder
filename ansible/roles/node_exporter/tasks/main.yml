@@ -1,0 +1,30 @@
+- name: "Copy node_exporter binary"
+  copy:
+    src: usr/local/bin/node_exporter
+    dest: /usr/local/bin/node_exporter
+    owner: root
+    group: root
+    mode: 0755
+
+- name: "Copy node_exporter service"
+  copy:
+    src: etc/systemd/system/node_exporter.service
+    dest: /etc/systemd/system/node_exporter.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: "Create nodeusr account for node_exporter service"
+  user:
+    name: nodeusr
+    comment: User for node_exporter service
+    system: yes
+    shell: /bin/false
+
+- name: "Start node_exporter service"
+  systemd:
+    state: started
+    name: node_exporter
+    daemon_reload: yes
+    enabled: yes
+    masked: no
