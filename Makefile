@@ -21,7 +21,8 @@ help: ## Display this help
 .PHONY: deps-qemu
 deps-qemu: ## Installs/checks dependencies for QEMU builds
 deps-qemu:
-	scripts/ensure-packer.sh
+	hack/ensure-ansible.sh
+	hack/ensure-packer.sh
 
 # We want the var files passed to Packer to have a specific order, because the
 # precenence of the variables they contain depends on the order. Files listed
@@ -64,7 +65,7 @@ QEMU_BUILD_NAMES	:=	$(addprefix qemu-,$(PLATFORMS_AND_VERSIONS))
 ## --------------------------------------
 QEMU_BUILD_TARGETS	:= $(addprefix build-,$(QEMU_BUILD_NAMES))
 
-$(QEMU_BUILD_TARGETS):
+$(QEMU_BUILD_TARGETS): deps-qemu
 	packer build $(PACKER_NODE_FLAGS) -var-file="$(abspath packer/qemu/$(subst build-,,$@).json)" $(PACKER_VAR_FILES) packer/qemu/packer.json
 .PHONY: $(QEMU_BUILD_TARGETS)
 

@@ -2,8 +2,11 @@
   "_comment": "Build with `packer build golden-image.json`",
   "builders": [
     {
+      "accelerator": "{{user `accelerator`}}",
       "disk_compression": true,
       "disk_image": true,
+      "disk_discard": "{{user `disk_discard`}}",
+      "disk_interface": "virtio-scsi",
       "disk_size": "{{user `disk_size`}}",
       "format": "{{ user `format` }}",
       "headless": "{{ user `headless` }}",
@@ -28,6 +31,7 @@
           "mon:stdio"
         ]
       ],
+      "shutdown_command": "echo '{{user `ssh_password`}}' | sudo -S -E sh -c 'usermod -L {{user `ssh_username`}} && {{user `shutdown_command`}}'",
       "ssh_password": "{{ user `ssh_password` }}",
       "ssh_port": "{{ user `ssh_port` }}",
       "ssh_timeout": "2h",
@@ -48,13 +52,9 @@
       "type": "shell"
     },
     {
-      "execute_command": "echo 'install ansible' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
-      "scripts": [
-        "scripts/install-ansible.sh"
+      "ansible_env_vars": [
+        "ANSIBLE_SSH_ARGS='{{user `existing_ansible_ssh_args`}} -o IdentitiesOnly=yes'"
       ],
-      "type": "shell"
-    },
-    {
       "extra_arguments": [
         "--extra-vars",
         "{{user `ansible_common_vars`}}",
@@ -62,12 +62,13 @@
         "{{user `ansible_extra_vars`}}"
       ],
       "playbook_file": "./ansible/node.yml",
-      "type": "ansible"
+      "type": "ansible",
+      "user": "builder"
     },
     {
-      "execute_command": "echo 'remove ansible' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
+      "execute_command": "echo 'clean ansible tmp directories' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
       "scripts": [
-        "scripts/remove-ansible.sh"
+        "scripts/clean-ansible-tmp.sh"
       ],
       "type": "shell"
     }
