@@ -10,7 +10,8 @@ if [ $os_distro == "centos" ]; then
 elif [ $os_distro == "ubuntu" ]; then
     echo 'deb http://deb.xanmod.org releases main' | sudo tee /etc/apt/sources.list.d/xanmod-kernel.list
     wget -qO - https://dl.xanmod.org/gpg.key | sudo apt-key --keyring /etc/apt/trusted.gpg.d/xanmod-kernel.gpg add -
-    sudo apt update -y && sudo apt install linux-xanmod -y
+    echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
+    sudo apt update -y && sudo apt install linux-xanmod-rt-edge -y
 elif [ $os_distro == "rocky" ]; then
     yum-config-manager --enable rt
     yum install -y kernel-rt rt-tests tuned-profiles-realtime
