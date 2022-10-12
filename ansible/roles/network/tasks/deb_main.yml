@@ -1,0 +1,19 @@
+---
+  - block:
+    - name: "Install net-tools and ifenslave for supporting bonding"
+      apt:
+        name: ['ifenslave', 'net-tools']
+        state: present
+        update_cache: true
+
+    - name: "Copy rc-local service"
+      copy:
+        src: "rc-local.service"
+        dest: "/etc/systemd/system/rc-local.service"
+        mode: 0644
+
+    - name: "Enable rc-local service"
+      service:
+        name: "rc-local"
+        state: started
+        enabled: yes
