@@ -1,0 +1,12 @@
+{
+  "build_name": "ubuntu-2204",
+  "distro_name": "ubuntu",
+  "ssh_username": "ubuntu",
+  "os_display_name": "Ubuntu 22.04",
+  "guest_os_type": "ubuntu-64",
+  "iso_url": "images/ubuntu-2204.qcow2",
+  "iso_checksum": "473ffcd1c65cb96f4f943f3aac09a8239a32e298359518c86426ad337829f1d5",
+  "iso_checksum_type": "sha256",
+  "shutdown_command": "shutdown -P now",
+  "ansible_python_interpreter": "/usr/bin/python3"
+}
