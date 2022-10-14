@@ -5,7 +5,7 @@
   "os_display_name": "Ubuntu 20.04",
   "guest_os_type": "ubuntu-64",
   "iso_url": "images/ubuntu-2004.qcow2",
-  "iso_checksum": "c33e4d8f8fd52d639aa114b237274da428be7fd95025e20787b11cf77507d111",  
+  "iso_checksum": "b44d5f851372664a1680a30cdda2f2eb2054e2b87e62801d635f0377f048dd82",
   "iso_checksum_type": "sha256",
   "shutdown_command": "shutdown -P now",
   "ansible_python_interpreter": "/usr/bin/python3"

@@ -5,7 +5,7 @@
   "os_display_name": "Ubuntu 18.04",
   "guest_os_type": "ubuntu-64",
   "iso_url": "images/ubuntu-1804.qcow2",
-  "iso_checksum": "653c7b98e8c044c1ff790f923f06536ce1297c35d88ddb2659c177ef9b458aa6",
+  "iso_checksum": "0ea9daf50daf99bfd0dcfc8e4607e56bb3e6dec6958496565afc6b47111daf08",
   "iso_checksum_type": "sha256",
   "shutdown_command": "shutdown -P now",
   "ansible_python_interpreter": "/usr/bin/python3"
