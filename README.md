@@ -5,6 +5,7 @@ The Image Builder can be used to build golden images intended for use with EdgeS
 
 Supported Host OS: 
 * CentOS 7
+* Rocky 8
 
 Supported Guest OS:
 * CentOS 7 (RT)
