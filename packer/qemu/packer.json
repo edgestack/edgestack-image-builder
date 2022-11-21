@@ -29,8 +29,13 @@
         [
           "-serial",
           "mon:stdio"
-        ]
+        ],
+	[
+	  "-cpu",
+          "host"
+	]
       ],
+      "firmware": "{{user `firmware`}}",
       "shutdown_command": "echo '{{user `ssh_password`}}' | sudo -S -E sh -c 'usermod -L {{user `ssh_username`}} && {{user `shutdown_command`}}'",
       "ssh_password": "{{ user `ssh_password` }}",
       "ssh_port": "{{ user `ssh_port` }}",
@@ -83,6 +88,7 @@
     "format": "qcow2",
     "headless": "true",
     "memory": "2048",
+    "firmware": "",
     "ssh_password": "builder",
     "ssh_port": "22"
   }

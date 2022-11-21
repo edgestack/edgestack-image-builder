@@ -51,7 +51,7 @@ PACKER_VAR_FILES := $(foreach f,$(abspath $(PACKER_VAR_FILES)),-var-file="$(f)" 
 FEDORA_VERSIONS         :=      fedora-34
 CENTOS_VERSIONS		:=	centos-7
 UBUNTU_VERSIONS		:=	ubuntu-1604 ubuntu-1804 ubuntu-2004 ubuntu-2204
-ROCKY_VERSIONS          :=      rocky-8
+ROCKY_VERSIONS          :=      rocky-8 rocky-8-uefi rocky-9-uefi
 
 PLATFORMS_AND_VERSIONS	:=	$(FEDORA_VERSIONS) \
 				$(CENTOS_VERSIONS) \
@@ -66,7 +66,7 @@ QEMU_BUILD_NAMES	:=	$(addprefix qemu-,$(PLATFORMS_AND_VERSIONS))
 QEMU_BUILD_TARGETS	:= $(addprefix build-,$(QEMU_BUILD_NAMES))
 
 $(QEMU_BUILD_TARGETS): deps-qemu
-	packer build $(PACKER_NODE_FLAGS) -var-file="$(abspath packer/qemu/$(subst build-,,$@).json)" $(PACKER_VAR_FILES) packer/qemu/packer.json
+	PACKER_LOG=1 packer build $(PACKER_NODE_FLAGS) -var-file="$(abspath packer/qemu/$(subst build-,,$@).json)" $(PACKER_VAR_FILES) packer/qemu/packer.json
 .PHONY: $(QEMU_BUILD_TARGETS)
 
 QEMU_BUILD_RT_TARGETS   := $(addsuffix -rt,$(QEMU_BUILD_TARGETS))
@@ -93,6 +93,8 @@ build-qemu-ubuntu-2204: ## Builds Ubuntu 22.04 QEMU image
 build-qemu-fedora-34:   ## Builds Fedora 34 QEMU image
 build-qemu-centos-7:    ## Builds CentOS 7 QEMU image
 build-qemu-rocky-8:     ## Builds Rocky 8 QEMU image
+build-qemu-rocky-8-uefi: ## Build Rocky 8 UEFI QEMU image
+build-qemu-rocky-9-uefi: ## Build Rocky 9 UEFI QEMU image
 
 build-qemu-ubuntu-1604-rt: ## Builds Ubuntu 16.04 RT QEMU image
 build-qemu-ubuntu-1804-rt: ## Builds Ubuntu 18.04 RT QEMU image

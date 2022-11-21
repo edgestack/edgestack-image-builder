@@ -4,6 +4,7 @@
   "ssh_username": "rocky",
   "os_display_name": "Rocky 8.6",
   "guest_os_type": "linux-64",
+  "firmware": "/usr/share/edk2.git/ovmf-x64/OVMF_CODE-pure-efi.fd",
   "iso_url": "images/rocky-8.qcow2",
   "iso_checksum": "4ef36a3fbeccc01c15737bef3a3bc5bdc6011d468df8a52487868e8710f1f220",
   "iso_checksum_type": "sha256",
