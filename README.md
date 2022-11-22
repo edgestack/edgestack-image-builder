@@ -10,7 +10,7 @@ Supported Host OS:
 Supported Guest OS:
 * CentOS 7 (RT)
 * Rocky 8 (RT)
-* Ubuntu 16.04 (RT)
+* Rocky 9 (RT)
 * Ubuntu 18.04 (RT)
 * Ubuntu 20.04 (RT)
 
