@@ -52,11 +52,13 @@ FEDORA_VERSIONS         :=      fedora-34
 CENTOS_VERSIONS		:=	centos-7
 UBUNTU_VERSIONS		:=	ubuntu-1604 ubuntu-1804 ubuntu-2004 ubuntu-2204
 ROCKY_VERSIONS          :=      rocky-8 rocky-8-uefi rocky-9-uefi
+ALMA_VERSIONS		:=	alma-8
 
 PLATFORMS_AND_VERSIONS	:=	$(FEDORA_VERSIONS) \
 				$(CENTOS_VERSIONS) \
 				$(UBUNTU_VERSIONS) \
-                                $(ROCKY_VERSIONS)
+                                $(ROCKY_VERSIONS) \
+				$(ALMA_VERSIONS)
 
 QEMU_BUILD_NAMES	:=	$(addprefix qemu-,$(PLATFORMS_AND_VERSIONS))
 
@@ -95,6 +97,7 @@ build-qemu-centos-7:    ## Builds CentOS 7 QEMU image
 build-qemu-rocky-8:     ## Builds Rocky 8 QEMU image
 build-qemu-rocky-8-uefi: ## Build Rocky 8 UEFI QEMU image
 build-qemu-rocky-9-uefi: ## Build Rocky 9 UEFI QEMU image
+build-qemu-alma-8:	## Builds Alma 8 QEMU image
 
 build-qemu-ubuntu-1604-rt: ## Builds Ubuntu 16.04 RT QEMU image
 build-qemu-ubuntu-1804-rt: ## Builds Ubuntu 18.04 RT QEMU image

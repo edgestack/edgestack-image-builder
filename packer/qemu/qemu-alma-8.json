@@ -1,0 +1,12 @@
+{
+  "build_name": "alma-8",
+  "distro_name": "alma",
+  "ssh_username": "almalinux",
+  "os_display_name": "Alma 8.6",
+  "guest_os_type": "linux-64",
+  "iso_url": "images/alma-8.qcow2",
+  "iso_checksum": "9505239cbaf56fae0abc93a2dba312606540014fcc01e74f196edac0b5fbe783",
+  "iso_checksum_type": "sha256",
+  "shutdown_command": "shutdown -P now",
+  "ansible_python_interpreter": "/usr/bin/python3"
+}
