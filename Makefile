@@ -49,10 +49,10 @@ PACKER_VAR_FILES := $(foreach f,$(abspath $(PACKER_VAR_FILES)),-var-file="$(f)" 
 ## Platform and version combinations
 ## --------------------------------------
 FEDORA_VERSIONS         :=      fedora-34
-CENTOS_VERSIONS		:=	centos-7
-UBUNTU_VERSIONS		:=	ubuntu-1604 ubuntu-1804 ubuntu-2004 ubuntu-2204
-ROCKY_VERSIONS          :=      rocky-8 rocky-8-uefi rocky-9-uefi
-ALMA_VERSIONS		:=	alma-8 alma-9
+CENTOS_VERSIONS		:=	centos-7 centos-7-aarch64
+UBUNTU_VERSIONS		:=	ubuntu-1604 ubuntu-1804 ubuntu-2004 ubuntu-2204 ubuntu-1804-aarch64 ubuntu-2004-aarch64 ubuntu-2204-aarch64
+ROCKY_VERSIONS          :=      rocky-8 rocky-8-uefi rocky-9-uefi rocky-8-uefi-aarch64 rocky-9-uefi-aarch64
+ALMA_VERSIONS		:=	alma-8 alma-9 alma-8-aarch64 alma-9-aarch64
 
 PLATFORMS_AND_VERSIONS	:=	$(FEDORA_VERSIONS) \
 				$(CENTOS_VERSIONS) \
@@ -88,17 +88,25 @@ $(QEMU_CLEAN_TARGETS):
 ## Document dynamic build targets
 ## --------------------------------------
 
-build-qemu-ubuntu-1604: ## Builds Ubuntu 16.04 QEMU image
-build-qemu-ubuntu-1804: ## Builds Ubuntu 18.04 QEMU image
-build-qemu-ubuntu-2004: ## Builds Ubuntu 20.04 QEMU image
-build-qemu-ubuntu-2204: ## Builds Ubuntu 22.04 QEMU image
-build-qemu-fedora-34:   ## Builds Fedora 34 QEMU image
-build-qemu-centos-7:    ## Builds CentOS 7 QEMU image
-build-qemu-rocky-8:     ## Builds Rocky 8 QEMU image
-build-qemu-rocky-8-uefi: ## Build Rocky 8 UEFI QEMU image
-build-qemu-rocky-9-uefi: ## Build Rocky 9 UEFI QEMU image
-build-qemu-alma-8:	## Builds Alma 8 QEMU image
-build-qemu-alma-9:      ## Builds Alma 9 QEMU image
+build-qemu-ubuntu-1604: 	## Builds Ubuntu 16.04 QEMU image
+build-qemu-ubuntu-1804: 	## Builds Ubuntu 18.04 QEMU image
+build-qemu-ubuntu-1804-aarch64: ## Builds Ubuntu 18.04 AARCH64 QEMU image
+build-qemu-ubuntu-2004: 	## Builds Ubuntu 20.04 QEMU image
+build-qemu-ubuntu-2004-aarch64: ## Builds Ubuntu 20.04 AARCH64 QEMU image
+build-qemu-ubuntu-2204: 	## Builds Ubuntu 22.04 QEMU image
+build-qemu-ubuntu-2204-aarch64: ## Builds Ubuntu 22.04 AARCH64 QEMU image
+build-qemu-fedora-34:   	## Builds Fedora 34 QEMU image
+build-qemu-centos-7:    	## Builds CentOS 7 QEMU image
+build-qemu-centos-7-aarch64: 	## Builds CentOS 7 AARCH64 QEMU image
+build-qemu-rocky-8:     	## Builds Rocky 8 QEMU image
+build-qemu-rocky-8-uefi: 	## Builds Rocky 8 UEFI QEMU image
+build-qemu-rocky-8-uefi-aarch64:## Builds Rocky 8 UEFI AARCH64 QEMU image
+build-qemu-rocky-9-uefi: 	## Builds Rocky 9 UEFI QEMU image
+build-qemu-rocky-9-uefi-aarch64:## Builds Rocky 9 UEFI AARCH64 QEMU image
+build-qemu-alma-8:		## Builds AlmaLinux 8 QEMU image
+build-qemu-alma-9:      	## Builds AlmaLinux 9 QEMU image
+build-qemu-alma-8-aarch64: 	## Builds AlmaLinux 8 AARCH64 QEMU image
+build-qemu-alma-9-aarch64: 	## Builds AlmaLinux 9 AARCH64 QEMU image
 
 build-qemu-ubuntu-1604-rt: ## Builds Ubuntu 16.04 RT QEMU image
 build-qemu-ubuntu-1804-rt: ## Builds Ubuntu 18.04 RT QEMU image

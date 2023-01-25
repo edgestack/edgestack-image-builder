@@ -1,0 +1,14 @@
+{
+  "build_name": "rocky-8",
+  "distro_name": "rocky",
+  "ssh_username": "rocky",
+  "os_display_name": "Rocky 8.7",
+  "guest_os_type": "linux-64",
+  "qemu_binary": "qemu-system-aarch64",
+  "firmware": "/usr/share/edk2/aarch64/QEMU_EFI.fd",
+  "iso_url": "images/rocky-8-aarch64.qcow2",
+  "iso_checksum": "34480f38c986ab192c9330530622b1131f49336db234b952fe19c05ce30d44ee",
+  "iso_checksum_type": "sha256",
+  "shutdown_command": "shutdown -P now",
+  "ansible_python_interpreter": "/usr/bin/python3"
+}

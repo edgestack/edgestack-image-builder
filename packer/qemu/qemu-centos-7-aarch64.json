@@ -1,0 +1,14 @@
+{
+  "build_name": "centos-7",
+  "distro_name": "centos",
+  "qemu_binary": "qemu-system-aarch64",
+  "ssh_username": "centos",
+  "os_display_name": "CentOS 7.8",
+  "guest_os_type": "linux-64",
+  "firmware": "/usr/share/edk2/aarch64/QEMU_EFI.fd",
+  "iso_url": "images/centos-7-aarch64.qcow2",
+  "iso_checksum": "6af6f9e596deb6c514d05209ae289369d19bce7ddf02297e9b08a18b5b276847",
+  "iso_checksum_type": "sha256",
+  "shutdown_command": "shutdown -P now",
+  "ansible_python_interpreter": "/usr/bin/python2"
+}

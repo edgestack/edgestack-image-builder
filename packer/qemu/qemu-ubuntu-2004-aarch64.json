@@ -1,0 +1,14 @@
+{
+  "build_name": "ubuntu-2004",
+  "distro_name": "ubuntu",
+  "ssh_username": "ubuntu",
+  "os_display_name": "Ubuntu 20.04",
+  "qemu_binary": "qemu-system-aarch64",
+  "firmware": "/usr/share/edk2/aarch64/QEMU_EFI.fd",
+  "guest_os_type": "ubuntu-64",
+  "iso_url": "images/ubuntu-2004-aarch64.qcow2",
+  "iso_checksum": "4ea4700f7b1de194a2f6bf760b911ea3071e0309fcea14d3a465a3323d57c60e",
+  "iso_checksum_type": "sha256",
+  "shutdown_command": "shutdown -P now",
+  "ansible_python_interpreter": "/usr/bin/python3"
+}

@@ -1,0 +1,14 @@
+{
+  "build_name": "ubuntu-1804",
+  "distro_name": "ubuntu",
+  "ssh_username": "ubuntu",
+  "os_display_name": "Ubuntu 18.04",
+  "qemu_binary": "qemu-system-aarch64",
+  "firmware": "/usr/share/edk2/aarch64/QEMU_EFI.fd",
+  "guest_os_type": "ubuntu-64",
+  "iso_url": "images/ubuntu-1804-aarch64.qcow2",
+  "iso_checksum": "6208c3f4374a01da320c3e5b367f37ed32dd7eab70e2c042c39191462a1383e2",
+  "iso_checksum_type": "sha256",
+  "shutdown_command": "shutdown -P now",
+  "ansible_python_interpreter": "/usr/bin/python3"
+}

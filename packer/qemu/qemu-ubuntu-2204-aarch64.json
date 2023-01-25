@@ -1,0 +1,14 @@
+{
+  "build_name": "ubuntu-2204",
+  "distro_name": "ubuntu",
+  "ssh_username": "ubuntu",
+  "os_display_name": "Ubuntu 22.04",
+  "qemu_binary": "qemu-system-aarch64",
+  "firmware": "/usr/share/edk2/aarch64/QEMU_EFI.fd",
+  "guest_os_type": "ubuntu-64",
+  "iso_url": "images/ubuntu-2204-aarch64.qcow2",
+  "iso_checksum": "8593ce1c6bbda11d590962cac0a1362301efe0001ce8c495fe6a33ec2fcb1884",
+  "iso_checksum_type": "sha256",
+  "shutdown_command": "shutdown -P now",
+  "ansible_python_interpreter": "/usr/bin/python3"
+}

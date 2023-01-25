@@ -13,6 +13,8 @@
       "iso_checksum": "{{ user `iso_checksum_type` }}:{{ user `iso_checksum` }}",
       "iso_url": "{{ user `iso_url` }}",
       "output_directory": "output",
+      "qemu_binary": "{{ user `qemu_binary` }}",
+      "machine_type": "virt",
       "qemuargs": [
         [
           "-m",
@@ -29,11 +31,7 @@
         [
           "-serial",
           "mon:stdio"
-        ],
-	[
-	  "-cpu",
-          "host"
-	]
+        ]
       ],
       "firmware": "{{user `firmware`}}",
       "shutdown_command": "echo '{{user `ssh_password`}}' | sudo -S -E sh -c 'usermod -L {{user `ssh_username`}} && {{user `shutdown_command`}}'",
@@ -79,7 +77,8 @@
     }
   ],
   "variables": {
-    "accelerator": "kvm",
+    "accelerator": "none",
+    "qemu_binary": "qemu-system-x86_64",
     "ansible_common_vars": "",
     "ansible_extra_vars": "",
     "cloud_init_image": "cloud-init/packer.init",
