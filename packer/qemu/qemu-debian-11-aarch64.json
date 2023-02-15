@@ -1,0 +1,14 @@
+{
+  "build_name": "debian-11",
+  "distro_name": "debian",
+  "ssh_username": "debian",
+  "os_display_name": "Debian Bullseye",
+  "qemu_binary": "qemu-system-aarch64",
+  "firmware": "/usr/share/edk2/aarch64/QEMU_EFI.fd",
+  "guest_os_type": "debian-64",
+  "iso_url": "https://cloud.debian.org/images/cloud/bullseye/20230124-1270/debian-11-generic-arm64-20230124-1270.qcow2",
+  "iso_checksum": "a16f9ae25cdc3a4b292c2fdbf6bda73deca3b63781eea543903414a7cd8b1e48",
+  "iso_checksum_type": "sha256",
+  "shutdown_command": "shutdown -P now",
+  "ansible_python_interpreter": "/usr/bin/python3"
+}
