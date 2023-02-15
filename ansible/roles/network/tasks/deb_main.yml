@@ -25,3 +25,9 @@
     line: "     renderers: ['netplan', 'eni', 'sysconfig']"
     create: yes
   when: ansible_distribution != "Ubuntu"
+
+- name: "Activate systemd-resolved service"
+  systemd:
+    state: started
+    enabled: true
+    name: systemd-resolved
