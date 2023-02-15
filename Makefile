@@ -49,12 +49,14 @@ PACKER_VAR_FILES := $(foreach f,$(abspath $(PACKER_VAR_FILES)),-var-file="$(f)" 
 ## Platform and version combinations
 ## --------------------------------------
 FEDORA_VERSIONS         :=      fedora-34
+DEBIAN_VERSIONS         :=      debian-11
 CENTOS_VERSIONS		:=	centos-7 centos-7-aarch64
 UBUNTU_VERSIONS		:=	ubuntu-1604 ubuntu-1804 ubuntu-2004 ubuntu-2204 ubuntu-1804-aarch64 ubuntu-2004-aarch64 ubuntu-2204-aarch64
 ROCKY_VERSIONS          :=      rocky-8 rocky-8-uefi rocky-9-uefi rocky-8-uefi-aarch64 rocky-9-uefi-aarch64
 ALMA_VERSIONS		:=	alma-8 alma-9 alma-8-aarch64 alma-9-aarch64
 
 PLATFORMS_AND_VERSIONS	:=	$(FEDORA_VERSIONS) \
+				$(DEBIAN_VERSIONS) \
 				$(CENTOS_VERSIONS) \
 				$(UBUNTU_VERSIONS) \
                                 $(ROCKY_VERSIONS) \
@@ -88,6 +90,7 @@ $(QEMU_CLEAN_TARGETS):
 ## Document dynamic build targets
 ## --------------------------------------
 
+build-qemu-debian-11:   	## Builds Debian 11 QEMU image
 build-qemu-ubuntu-1604: 	## Builds Ubuntu 16.04 QEMU image
 build-qemu-ubuntu-1804: 	## Builds Ubuntu 18.04 QEMU image
 build-qemu-ubuntu-1804-aarch64: ## Builds Ubuntu 18.04 AARCH64 QEMU image
