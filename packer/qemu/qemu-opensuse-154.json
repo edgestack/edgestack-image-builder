@@ -1,0 +1,12 @@
+{
+  "build_name": "opensuse-154",
+  "distro_name": "opensuse",
+  "ssh_username": "opensuse",
+  "os_display_name": "OpenSUSE 15.4",
+  "guest_os_type": "linux-64",
+  "iso_url": "https://download.opensuse.org/pub/opensuse/distribution/leap/15.4/appliances/openSUSE-Leap-15.4-JeOS.x86_64-15.4-OpenStack-Cloud-Current.qcow2",
+  "iso_checksum": "3b31ed1265586276c0bcd18dfbac0d7055ec8c05182143a226cd9271d869715d",
+  "iso_checksum_type": "sha256",
+  "shutdown_command": "shutdown -P now",
+  "ansible_python_interpreter": "/usr/bin/python2"
+}
