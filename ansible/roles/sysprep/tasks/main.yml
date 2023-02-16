@@ -5,6 +5,9 @@
 - import_tasks: el_prep.yml
   when: ansible_os_family == "RedHat"
 
+- import_tasks: suse_prep.yml
+  when: ansible_os_family == "Suse"
+
 - name: Truncate machine id
   file:
     state: "{{ item.state }}"
