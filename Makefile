@@ -54,7 +54,7 @@ CENTOS_VERSIONS		:=	centos-7 centos-7-aarch64
 UBUNTU_VERSIONS		:=	ubuntu-1604 ubuntu-1804 ubuntu-2004 ubuntu-2204 ubuntu-1804-aarch64 ubuntu-2004-aarch64 ubuntu-2204-aarch64
 ROCKY_VERSIONS          :=      rocky-8 rocky-8-uefi rocky-9-uefi rocky-8-uefi-aarch64 rocky-9-uefi-aarch64
 ALMA_VERSIONS		:=	alma-8 alma-9 alma-8-aarch64 alma-9-aarch64
-OPENSUSE_VERSIONS       :=      opensuse-154
+OPENSUSE_VERSIONS       :=      opensuse-154 opensuse-154-aarch64
 
 PLATFORMS_AND_VERSIONS	:=	$(FEDORA_VERSIONS) \
 				$(DEBIAN_VERSIONS) \
@@ -114,6 +114,7 @@ build-qemu-alma-9:      	## Builds AlmaLinux 9 QEMU image
 build-qemu-alma-8-aarch64: 	## Builds AlmaLinux 8 AARCH64 QEMU image
 build-qemu-alma-9-aarch64: 	## Builds AlmaLinux 9 AARCH64 QEMU image
 build-qemu-opensuse-154:	## Builds OpenSUSE Leap 15.4 QEMU image
+build-qemu-opensuse-154-aarch64:## Builds OpenSUSE Leap 15.4 AARCH64 QEMU image
 
 build-qemu-ubuntu-1604-rt: ## Builds Ubuntu 16.04 RT QEMU image
 build-qemu-ubuntu-1804-rt: ## Builds Ubuntu 18.04 RT QEMU image

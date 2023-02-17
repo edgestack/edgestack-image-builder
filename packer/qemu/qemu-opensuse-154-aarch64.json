@@ -1,0 +1,14 @@
+{
+  "build_name": "opensuse-154",
+  "distro_name": "opensuse",
+  "qemu_binary": "qemu-system-aarch64",
+  "ssh_username": "opensuse",
+  "os_display_name": "OpenSUSE 15.4",
+  "guest_os_type": "linux-64",
+  "firmware": "/usr/share/edk2/aarch64/QEMU_EFI.fd",
+  "iso_url": "https://download.opensuse.org/repositories/Cloud:/Images:/Leap_15.4/images/openSUSE-Leap-15.4.aarch64-NoCloud.qcow2",
+  "iso_checksum": "b2ee336032c0e0928ceb8858297b146f7aa680979124c3a796a17cba26a37d08",
+  "iso_checksum_type": "sha256",
+  "shutdown_command": "shutdown -P now",
+  "ansible_python_interpreter": "/usr/bin/python2"
+}
