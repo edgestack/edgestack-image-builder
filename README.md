@@ -11,6 +11,10 @@ Supported Guest OS:
 * CentOS 7 (RT)
 * Rocky 8 (RT)
 * Rocky 9 (RT)
+* AlmaLinux 8
+* AlmaLinux 9
+* Debian 11
+* OpenSUSE 15
 * Ubuntu 18.04 (RT)
 * Ubuntu 20.04 (RT)
 * Ubuntu 22.04 (RT)
