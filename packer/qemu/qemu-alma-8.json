@@ -4,7 +4,7 @@
   "ssh_username": "almalinux",
   "os_display_name": "Alma 8.7",
   "guest_os_type": "linux-64",
-  "iso_url": "images/alma-8.qcow2",
+  "iso_url": "https://repo.almalinux.org/almalinux/8/cloud/x86_64/images/AlmaLinux-8-GenericCloud-8.7-20221111.x86_64.qcow2",
   "iso_checksum": "9505239cbaf56fae0abc93a2dba312606540014fcc01e74f196edac0b5fbe783",
   "iso_checksum_type": "sha256",
   "shutdown_command": "shutdown -P now",

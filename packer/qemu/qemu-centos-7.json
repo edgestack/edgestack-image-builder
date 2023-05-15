@@ -4,8 +4,8 @@
   "ssh_username": "centos",
   "os_display_name": "CentOS 7.8",
   "guest_os_type": "linux-64",
-  "iso_url": "images/centos-7.qcow2",
-  "iso_checksum": "4c34278cd7ba51e47d864a5cb34301a2ec7853786cb73877f3fe61bb1040edd4",
+  "iso_url": "https://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud-2211.qcow2",
+  "iso_checksum": "284aab2b23d91318f169ff464bce4d53404a15a0618ceb34562838c59af4adea",
   "iso_checksum_type": "sha256",
   "shutdown_command": "shutdown -P now",
   "ansible_python_interpreter": "/usr/bin/python2"

@@ -4,8 +4,8 @@
   "ssh_username": "ubuntu",
   "os_display_name": "Ubuntu 18.04",
   "guest_os_type": "ubuntu-64",
-  "iso_url": "images/ubuntu-1804.qcow2",
-  "iso_checksum": "0ea9daf50daf99bfd0dcfc8e4607e56bb3e6dec6958496565afc6b47111daf08",
+  "iso_url": "https://cloud-images.ubuntu.com/releases/bionic/release-20230425/ubuntu-18.04-server-cloudimg-amd64.img",
+  "iso_checksum": "1975f68897bb8489d389a04c3bd9674ecf15bd351498c938d37352a8b9edddc9",
   "iso_checksum_type": "sha256",
   "shutdown_command": "shutdown -P now",
   "ansible_python_interpreter": "/usr/bin/python3"

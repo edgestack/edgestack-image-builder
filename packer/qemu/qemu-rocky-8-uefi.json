@@ -5,8 +5,8 @@
   "os_display_name": "Rocky 8.6",
   "guest_os_type": "linux-64",
   "firmware": "/usr/share/edk2.git/ovmf-x64/OVMF_CODE-pure-efi.fd",
-  "iso_url": "images/rocky-8.qcow2",
-  "iso_checksum": "4ef36a3fbeccc01c15737bef3a3bc5bdc6011d468df8a52487868e8710f1f220",
+  "iso_url": "https://dl.rockylinux.org/pub/rocky/8/images/x86_64/Rocky-8-GenericCloud-Base-8.7-20230215.0.x86_64.qcow2",
+  "iso_checksum": "f242e06b76124b8ea3495fc6d69eb6e89e0a1826e3d9bdabed0ef4e68880eb5a",
   "iso_checksum_type": "sha256",
   "shutdown_command": "shutdown -P now",
   "ansible_python_interpreter": "/usr/bin/python3"
