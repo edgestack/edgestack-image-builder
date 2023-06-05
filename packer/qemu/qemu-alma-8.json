@@ -2,10 +2,10 @@
   "build_name": "alma-8",
   "distro_name": "alma",
   "ssh_username": "almalinux",
-  "os_display_name": "Alma 8.7",
+  "os_display_name": "Alma 8.8",
   "guest_os_type": "linux-64",
-  "iso_url": "https://repo.almalinux.org/almalinux/8/cloud/x86_64/images/AlmaLinux-8-GenericCloud-8.7-20221111.x86_64.qcow2",
-  "iso_checksum": "9505239cbaf56fae0abc93a2dba312606540014fcc01e74f196edac0b5fbe783",
+  "iso_url": "https://repo.almalinux.org/almalinux/8/cloud/x86_64/images/AlmaLinux-8-GenericCloud-8.8-20230524.x86_64.qcow2",
+  "iso_checksum": "c0ad09255d91288dac590d99c95197d83a2846f1bcbec3f4222fb04265a2a4d7",
   "iso_checksum_type": "sha256",
   "shutdown_command": "shutdown -P now",
   "ansible_python_interpreter": "/usr/bin/python3"
