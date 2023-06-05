@@ -6,8 +6,8 @@
   "os_display_name": "Alma 9.1",
   "guest_os_type": "linux-64",
   "firmware": "/usr/share/edk2/aarch64/QEMU_EFI.fd",
-  "iso_url": "images/alma-9-aarch64.qcow2",
-  "iso_checksum": "3405f30db62441c18258c21c01754addeb4dfdf9714d151f042942d223ab3865",
+  "iso_url": "https://repo.almalinux.org/almalinux/9/cloud/aarch64/images/AlmaLinux-9-GenericCloud-9.2-20230513.aarch64.qcow2",
+  "iso_checksum": "a4cbd35010ae0ce7437b2855e5f6f6f03124784ca2aaa5c111563f64e03301e4",
   "iso_checksum_type": "sha256",
   "shutdown_command": "shutdown -P now",
   "ansible_python_interpreter": "/usr/bin/python3"
