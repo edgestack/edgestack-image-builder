@@ -1,0 +1,13 @@
+- block:
+    - name: "Install ntpd"
+      yum:
+        name: "ntp"
+        state: present
+      become: true
+
+    - name: "Start and enable ntpd daemon"
+      service:
+        name: ntpd
+        state: started
+        enabled: yes
+      become: true
