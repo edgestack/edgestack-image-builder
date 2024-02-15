@@ -1,0 +1,6 @@
+- block:
+    - name: "Install guest agent"
+      yum:
+        name: "qemu-guest-agent"
+        state: present
+      become: true
