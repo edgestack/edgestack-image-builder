@@ -1,0 +1,20 @@
+{
+  "build_name": "rocky-9",
+  "distro_name": "rocky",
+  "ssh_username": "rocky",
+  "os_display_name": "Rocky 9.4",
+  "guest_os_type": "linux-64",
+  "machine_type": "virt",
+  "qemu_binary": "qemu-system-aarch64",
+  "firmware": "/usr/share/edk2/aarch64/QEMU_EFI.fd",
+  "iso_url": "https://download.rockylinux.org/pub/rocky/9.4/images/aarch64/Rocky-9-GenericCloud-Base.latest.aarch64.qcow2",
+  "iso_checksum": "4475b93bc0c0808697774ea7f77a465052d7d5259266618a3153eecf1780b6a3",
+  "iso_checksum_type": "sha256",
+  "shutdown_command": "shutdown -P now",
+  "ansible_python_interpreter": "/usr/bin/python3",
+  "qemu_img_args": {
+    "resize": ["--shrink"]
+  },
+  "memory": "16384",
+  "cpus": "8"
+}

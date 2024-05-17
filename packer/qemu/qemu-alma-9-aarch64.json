@@ -1,0 +1,17 @@
+{
+  "build_name": "alma-9",
+  "distro_name": "alma",
+  "ssh_username": "almalinux",
+  "os_display_name": "Alma 9.4",
+  "guest_os_type": "linux-64",
+  "machine_type": "virt",
+  "qemu_binary": "qemu-system-aarch64",
+  "firmware": "/usr/share/edk2/aarch64/QEMU_EFI.fd",
+  "iso_url": "http://almalinux-mirror.datakeepers.co.za/9.4/cloud/aarch64/images/AlmaLinux-9-GenericCloud-latest.aarch64.qcow2",
+  "iso_checksum": "75b2e68f6aaa41c039274595ff15968201b7201a7f2f03b109af691f2d3687a1",
+  "iso_checksum_type": "sha256",
+  "shutdown_command": "shutdown -P now",
+  "ansible_python_interpreter": "/usr/bin/python3",
+  "memory": "16384",
+  "cpus": "8"
+}

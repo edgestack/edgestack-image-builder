@@ -44,7 +44,12 @@
       "boot_wait": "60s",
       "type": "qemu",
       "use_default_display": false,
-      "vm_name": "{{user `build_name`}}.qcow2"
+      "vm_name": "{{user `build_name`}}.qcow2",
+      "qemu_binary": "{{user `qemu_binary`}}",
+      "machine_type": "{{user `machine_type`}}",
+      "qemu_img_args": {
+        "resize": ["--shrink"]
+      }
     }
   ],
   "provisioners": [
