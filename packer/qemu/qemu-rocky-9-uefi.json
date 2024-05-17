@@ -9,8 +9,5 @@
   "iso_checksum": "50510f98abe1b20a548102a05a9be83153b0bf634fc502d5c8d1f508f6de1430",
   "iso_checksum_type": "sha256",
   "shutdown_command": "shutdown -P now",
-  "ansible_python_interpreter": "/usr/bin/python3",
-  "qemu_img_args": {
-    "resize": ["--shrink"]
-  }
+  "ansible_python_interpreter": "/usr/bin/python3"
 }

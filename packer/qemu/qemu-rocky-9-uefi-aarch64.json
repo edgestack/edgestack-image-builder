@@ -12,9 +12,6 @@
   "iso_checksum_type": "sha256",
   "shutdown_command": "shutdown -P now",
   "ansible_python_interpreter": "/usr/bin/python3",
-  "qemu_img_args": {
-    "resize": ["--shrink"]
-  },
   "memory": "16384",
   "cpus": "8"
 }
