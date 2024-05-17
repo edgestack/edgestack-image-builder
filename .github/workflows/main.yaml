@@ -69,18 +69,18 @@ jobs:
 
       - name: Build & push container image
         run: |
-          sudo docker build --tag quay.io/edgestack/alma-9-container-disk:x86_64 output
+          sudo docker build --tag quay.io/edgestack/almalinux-9-container-disk:x86_64 output
           sudo docker login quay.io/edgestack -u ${{ secrets.QUAY_USER_NAME }} -p ${{ secrets.QUAY_PASSWORD }}
-          sudo docker push quay.io/edgestack/alma-9-container-disk:x86_64
+          sudo docker push quay.io/edgestack/almalinux-9-container-disk:x86_64
 
       - name: Create container image manifests
         continue-on-error: true
         run: |
-          sudo docker manifest create quay.io/edgestack/alma-9-container-disk:latest \
-            quay.io/edgestack/alma-9-container-disk:aarch64 \
-            quay.io/edgestack/alma-9-container-disk:x86_64 --amend
-          sudo docker manifest push quay.io/edgestack/alma-9-container-disk:latest
-          sudo docker manifest rm quay.io/edgestack/alma-9-container-disk:latest
+          sudo docker manifest create quay.io/edgestack/almalinux-9-container-disk:latest \
+            quay.io/edgestack/almalinux-9-container-disk:aarch64 \
+            quay.io/edgestack/almalinux-9-container-disk:x86_64 --amend
+          sudo docker manifest push quay.io/edgestack/almalinux-9-container-disk:latest
+          sudo docker manifest rm quay.io/edgestack/almalinux-9-container-disk:latest
 
   build-rockylinux-9-amd64:
     runs-on:
@@ -103,7 +103,7 @@ jobs:
         run: |
           cat << EOF > output/Dockerfile
           FROM alpine
-          ADD rocky-9-uefi.qcow2 /disk/
+          ADD rocky-9.qcow2 /disk/
           EOF
 
       - name: Build & push container image
@@ -186,18 +186,18 @@ jobs:
 
       - name: Build & push container image
         run: |
-          sudo docker build --tag quay.io/edgestack/alma-9-container-disk:aarch64 output
+          sudo docker build --tag quay.io/edgestack/almalinux-9-container-disk:aarch64 output
           sudo docker login quay.io/edgestack -u ${{ secrets.QUAY_USER_NAME }} -p ${{ secrets.QUAY_PASSWORD }}
-          sudo docker push quay.io/edgestack/alma-9-container-disk:aarch64
+          sudo docker push quay.io/edgestack/almalinux-9-container-disk:aarch64
 
       - name: Create container image manifests
         continue-on-error: true
         run: |
-          sudo docker manifest create quay.io/edgestack/alma-9-container-disk:latest \
-            quay.io/edgestack/alma-9-container-disk:aarch64 \
-            quay.io/edgestack/alma-9-container-disk:x86_64 --amend
-          sudo docker manifest push quay.io/edgestack/alma-9-container-disk:latest
-          sudo docker manifest rm quay.io/edgestack/alma-9-container-disk:latest
+          sudo docker manifest create quay.io/edgestack/almalinux-9-container-disk:latest \
+            quay.io/edgestack/almalinux-9-container-disk:aarch64 \
+            quay.io/edgestack/almalinux-9-container-disk:x86_64 --amend
+          sudo docker manifest push quay.io/edgestack/almalinux-9-container-disk:latest
+          sudo docker manifest rm quay.io/edgestack/almalinux-9-container-disk:latest
 
   build-rockylinux-9-arm64:
     runs-on:
@@ -220,7 +220,7 @@ jobs:
         run: |
           cat << EOF > output/Dockerfile
           FROM alpine
-          ADD rocky-9-uefi.qcow2 /disk/
+          ADD rocky-9.qcow2 /disk/
           EOF
 
       - name: Build & push container image
