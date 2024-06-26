@@ -52,7 +52,7 @@ FEDORA_VERSIONS         :=  fedora-34
 DEBIAN_VERSIONS		:=  debian-11
 CENTOS_VERSIONS		:=  centos-7
 UBUNTU_VERSIONS		:=  ubuntu-1604 ubuntu-1804 ubuntu-2004 ubuntu-2204 ubuntu-2404 ubuntu-2404-aarch64
-ROCKY_VERSIONS          :=  rocky-8 rocky-8-uefi rocky-9-uefi rocky-9-uefi-aarch64
+ROCKY_VERSIONS          :=  rocky-8 rocky-8-uefi rocky-8-uefi-aarch64 rocky-9-uefi rocky-9-uefi-aarch64
 ALMA_VERSIONS		:=  alma-8 alma-8-uefi alma-8-aarch64 alma-9 alma-9-aarch64
 OPENSUSE_VERSIONS	:=  opensuse-154
 
