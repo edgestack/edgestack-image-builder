@@ -51,7 +51,7 @@ PACKER_VAR_FILES := $(foreach f,$(abspath $(PACKER_VAR_FILES)),-var-file="$(f)" 
 FEDORA_VERSIONS         :=  fedora-34
 DEBIAN_VERSIONS		:=  debian-11
 CENTOS_VERSIONS		:=  centos-7
-UBUNTU_VERSIONS		:=  ubuntu-1604 ubuntu-1804 ubuntu-2004 ubuntu-2204 ubuntu-2404 ubuntu-2404-aarch64
+UBUNTU_VERSIONS		:=  ubuntu-1604 ubuntu-1804 ubuntu-1804-aarch64 ubuntu-2004 ubuntu-2004-aarch64 ubuntu-2204 ubuntu-2204-aarch64 ubuntu-2404 ubuntu-2404-aarch64
 ROCKY_VERSIONS          :=  rocky-8 rocky-8-uefi rocky-8-uefi-aarch64 rocky-9-uefi rocky-9-uefi-aarch64
 ALMA_VERSIONS		:=  alma-8 alma-8-uefi alma-8-aarch64 alma-9 alma-9-aarch64
 OPENSUSE_VERSIONS	:=  opensuse-154
@@ -95,8 +95,11 @@ $(QEMU_CLEAN_TARGETS):
 build-qemu-debian-11:   ## Builds Debian 11 QEMU image
 build-qemu-ubuntu-1604: ## Builds Ubuntu 16.04 QEMU image
 build-qemu-ubuntu-1804: ## Builds Ubuntu 18.04 QEMU image
+build-qemu-ubuntu-1804-aarch64: ## Builds Ubuntu 18.04 arm64 QEMU image
 build-qemu-ubuntu-2004: ## Builds Ubuntu 20.04 QEMU image
+build-qemu-ubuntu-2004-aarch64: ## Builds Ubuntu 20.04 arm64 QEMU image
 build-qemu-ubuntu-2204: ## Builds Ubuntu 22.04 QEMU image
+build-qemu-ubuntu-2204-aarch64: ## Builds Ubuntu 22.04 arm64 QEMU image
 build-qemu-ubuntu-2404: ## Builds Ubuntu 24.04 QEMU image
 build-qemu-ubuntu-2404-aarch64: ## Builds Ubuntu 24.04 arm64 QEMU image
 build-qemu-fedora-34:   ## Builds Fedora 34 QEMU image

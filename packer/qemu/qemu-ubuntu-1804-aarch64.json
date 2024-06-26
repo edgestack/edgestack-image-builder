@@ -1,0 +1,17 @@
+{
+  "build_name": "ubuntu-1804",
+  "distro_name": "ubuntu",
+  "ssh_username": "ubuntu",
+  "os_display_name": "Ubuntu 18.04",
+  "guest_os_type": "ubuntu-64",
+  "machine_type": "virt",
+  "qemu_binary": "qemu-system-aarch64",
+  "firmware": "/usr/share/edk2/aarch64/QEMU_EFI.fd",
+  "iso_url": "https://cloud-images.ubuntu.com/releases/bionic/release-20230607/ubuntu-18.04-server-cloudimg-arm64.img",
+  "iso_checksum": "9930a57427ad8c9e50a84a36132cd5ad81751b64ee678062dcc354a9b84654f7",
+  "iso_checksum_type": "sha256",
+  "shutdown_command": "shutdown -P now",
+  "ansible_python_interpreter": "/usr/bin/python3",
+  "memory": "16384",
+  "cpus": "8"
+}

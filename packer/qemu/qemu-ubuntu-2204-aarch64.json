@@ -1,0 +1,17 @@
+{
+  "build_name": "ubuntu-2204",
+  "distro_name": "ubuntu",
+  "ssh_username": "ubuntu",
+  "os_display_name": "Ubuntu 22.04",
+  "guest_os_type": "ubuntu-64",
+  "machine_type": "virt",
+  "qemu_binary": "qemu-system-aarch64",
+  "firmware": "/usr/share/edk2/aarch64/QEMU_EFI.fd",
+  "iso_url": "https://cloud-images.ubuntu.com/releases/jammy/release-20240626/ubuntu-22.04-server-cloudimg-arm64.img",
+  "iso_checksum": "31c046db6c7ea01d31d5ceb2f7bc510c7ed7aa1143eac0dbd028bd27c2de26fa",
+  "iso_checksum_type": "sha256",
+  "shutdown_command": "shutdown -P now",
+  "ansible_python_interpreter": "/usr/bin/python3",
+  "memory": "16384",
+  "cpus": "8"
+}
