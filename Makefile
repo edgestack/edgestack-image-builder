@@ -48,13 +48,13 @@ PACKER_VAR_FILES := $(foreach f,$(abspath $(PACKER_VAR_FILES)),-var-file="$(f)" 
 ## --------------------------------------
 ## Platform and version combinations
 ## --------------------------------------
-FEDORA_VERSIONS     :=  fedora-34
-DEBIAN_VERSIONS		:=	debian-11
-CENTOS_VERSIONS		:=	centos-7
-UBUNTU_VERSIONS		:=	ubuntu-1604 ubuntu-1804 ubuntu-2004 ubuntu-2204 ubuntu-2404 ubuntu-2404-aarch64
-ROCKY_VERSIONS      :=  rocky-8 rocky-8-uefi rocky-9-uefi rocky-9-uefi-aarch64
-ALMA_VERSIONS		:=	alma-8 alma-9 alma-9-aarch64
-OPENSUSE_VERSIONS	:=	opensuse-154
+FEDORA_VERSIONS         :=  fedora-34
+DEBIAN_VERSIONS		:=  debian-11
+CENTOS_VERSIONS		:=  centos-7
+UBUNTU_VERSIONS		:=  ubuntu-1604 ubuntu-1804 ubuntu-2004 ubuntu-2204 ubuntu-2404 ubuntu-2404-aarch64
+ROCKY_VERSIONS          :=  rocky-8 rocky-8-uefi rocky-9-uefi rocky-9-uefi-aarch64
+ALMA_VERSIONS		:=  alma-8 alma-8-uefi alma-8-aarch64 alma-9 alma-9-aarch64
+OPENSUSE_VERSIONS	:=  opensuse-154
 
 PLATFORMS_AND_VERSIONS	:=	$(FEDORA_VERSIONS) \
 				$(DEBIAN_VERSIONS) \
@@ -103,8 +103,12 @@ build-qemu-fedora-34:   ## Builds Fedora 34 QEMU image
 build-qemu-centos-7:    ## Builds CentOS 7 QEMU image
 build-qemu-rocky-8:     ## Builds Rocky 8 QEMU image
 build-qemu-rocky-8-uefi: ## Build Rocky 8 UEFI QEMU image
+build-qemu-rocky-8-uefi-aarch64: ## Build Build Rocky 8 UEFI arm64 QEMU image
 build-qemu-rocky-9-uefi: ## Build Rocky 9 UEFI QEMU image
+build-qemu-rocky-9-uefi-aarch64: ## Build Build Rocky 9 UEFI arm64 QEMU image
 build-qemu-alma-8:	## Builds Alma 8 QEMU image
+build-qemu-alma-8-uefi: ## Builds Alma 8 UEFI QEMU image
+build-qemu-alma-8-aarch64: ## Builds Alma 8 arm64 QEMU image
 build-qemu-alma-9:      ## Builds Alma 9 QEMU image
 build-qemu-alma-9-aarch64:      ## Builds Alma 9 arm64 QEMU image
 build-qemu-opensuse-154:## Builds OpenSUSE Leap 15.4 QEMU image
