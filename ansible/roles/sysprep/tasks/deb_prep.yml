@@ -4,11 +4,6 @@
     last_log_mode:   "0664"
     machine_id_mode: "0644"
 
-- name: Stop auditing
-  service:
-    name: rsyslog
-    state: stopped
-
 - name: Remove apt package caches
   apt:
     autoclean: yes
