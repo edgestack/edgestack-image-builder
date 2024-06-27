@@ -13,7 +13,8 @@ Supported Guest OS:
 * Rocky 9 (x86, ARM)
 * AlmaLinux 8 (x86, ARM)
 * AlmaLinux 9 (x86, ARM)
-* Debian 11
+* Debian 11 (x86, ARM)
+* Debian 12 (x86, ARM)
 * OpenSUSE 15
 * Ubuntu 18.04 (x86, ARM)
 * Ubuntu 20.04 (x86, ARM)
