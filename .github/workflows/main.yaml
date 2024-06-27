@@ -176,7 +176,7 @@ jobs:
           echo PATH=$PATH >> $GITHUB_ENV
 
       - name: Build image
-        run: make build-qemu-alma-8-uefi
+        run: make build-qemu-alma-8
 
       - name: Create Dockerfile
         run: |
@@ -187,19 +187,18 @@ jobs:
 
       - name: Build & push container image
         run: |
-          sudo docker build --tag quay.io/edgestack/almalinux-8-uefi-container-disk:x86_64 output
+          sudo docker build --tag quay.io/edgestack/almalinux-8-container-disk:x86_64 output
           sudo docker login quay.io/edgestack -u ${{ secrets.QUAY_USER_NAME }} -p ${{ secrets.QUAY_PASSWORD }}
-          sudo docker push quay.io/edgestack/almalinux-8-uefi-container-disk:x86_64
+          sudo docker push quay.io/edgestack/almalinux-8-container-disk:x86_64
 
       - name: Create container image manifests
         continue-on-error: true
         run: |
-          sudo docker manifest create quay.io/edgestack/almalinux-8-uefi-container-disk:latest \
-            quay.io/edgestack/almalinux-8-uefi-container-disk:aarch64 \
-            quay.io/edgestack/almalinux-8-uefi-container-disk:x86_64 --amend
-          sudo docker manifest push quay.io/edgestack/almalinux-8-uefi-container-disk:latest
-          sudo docker manifest rm quay.io/edgestack/almalinux-8-uefi-container-disk:latest
-
+          sudo docker manifest create quay.io/edgestack/almalinux-8-container-disk:latest \
+            quay.io/edgestack/almalinux-8-container-disk:aarch64 \
+            quay.io/edgestack/almalinux-8-container-disk:x86_64 --amend
+          sudo docker manifest push quay.io/edgestack/almalinux-8-container-disk:latest
+          sudo docker manifest rm quay.io/edgestack/almalinux-8-container-disk:latest
 
   build-almalinux-9-amd64:
     runs-on:
