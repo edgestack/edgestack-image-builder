@@ -8,16 +8,17 @@ Supported Host OS:
 * Rocky 8
 
 Supported Guest OS:
-* CentOS 7 (RT)
-* Rocky 8 (RT)
-* Rocky 9 (RT)
-* AlmaLinux 8
-* AlmaLinux 9
+* CentOS 7
+* Rocky 8 (x86, ARM)
+* Rocky 9 (x86, ARM)
+* AlmaLinux 8 (x86, ARM)
+* AlmaLinux 9 (x86, ARM)
 * Debian 11
 * OpenSUSE 15
-* Ubuntu 18.04 (RT)
-* Ubuntu 20.04 (RT)
-* Ubuntu 22.04 (RT)
+* Ubuntu 18.04 (x86, ARM)
+* Ubuntu 20.04 (x86, ARM)
+* Ubuntu 22.04 (x86, ARM)
+* Ubuntu 24.04 (x86, ARM)
 
 Packer has issues working with qemu-system binary in ubuntu distribution. Make sure that you are using the image builder in CentOS distribution.
 
