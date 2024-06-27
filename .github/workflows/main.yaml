@@ -5,6 +5,84 @@ on:
       - master
 jobs:
 
+  build-debian-11-amd64:
+    runs-on:
+      - self-hosted
+      - linux
+      - x64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Activate virtualenv
+        run: |
+          . /home/rocky/.venv/bin/activate
+          echo PATH=$PATH >> $GITHUB_ENV
+
+      - name: Build image
+        run: make build-qemu-debian-11
+
+      - name: Create Dockerfile
+        run: |
+          cat << EOF > output/Dockerfile
+          FROM alpine
+          ADD debian-11.qcow2 /disk/
+          EOF
+
+      - name: Build & push container image
+        run: |
+          sudo docker build --tag quay.io/edgestack/debian-11-container-disk:x86_64 output
+          sudo docker login quay.io/edgestack -u ${{ secrets.QUAY_USER_NAME }} -p ${{ secrets.QUAY_PASSWORD }}
+          sudo docker push quay.io/edgestack/debian-11-container-disk:x86_64
+
+      - name: Create container image manifests
+        continue-on-error: true
+        run: |
+          sudo docker manifest create quay.io/edgestack/debian-11-container-disk:latest \
+            quay.io/edgestack/debian-11-container-disk:aarch64 \
+            quay.io/edgestack/debian-11-container-disk:x86_64 --amend
+          sudo docker manifest push quay.io/edgestack/debian-11-container-disk:latest
+          sudo docker manifest rm quay.io/edgestack/debian-11-container-disk:latest
+
+  build-debian-12-amd64:
+    runs-on:
+      - self-hosted
+      - linux
+      - x64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Activate virtualenv
+        run: |
+          . /home/rocky/.venv/bin/activate
+          echo PATH=$PATH >> $GITHUB_ENV
+
+      - name: Build image
+        run: make build-qemu-debian-12
+
+      - name: Create Dockerfile
+        run: |
+          cat << EOF > output/Dockerfile
+          FROM alpine
+          ADD debian-12.qcow2 /disk/
+          EOF
+
+      - name: Build & push container image
+        run: |
+          sudo docker build --tag quay.io/edgestack/debian-12-container-disk:x86_64 output
+          sudo docker login quay.io/edgestack -u ${{ secrets.QUAY_USER_NAME }} -p ${{ secrets.QUAY_PASSWORD }}
+          sudo docker push quay.io/edgestack/debian-12-container-disk:x86_64
+
+      - name: Create container image manifests
+        continue-on-error: true
+        run: |
+          sudo docker manifest create quay.io/edgestack/debian-12-container-disk:latest \
+            quay.io/edgestack/debian-12-container-disk:aarch64 \
+            quay.io/edgestack/debian-12-container-disk:x86_64 --amend
+          sudo docker manifest push quay.io/edgestack/debian-12-container-disk:latest
+          sudo docker manifest rm quay.io/edgestack/debian-12-container-disk:latest
+
   build-ubuntu-1804-amd64:
     runs-on:
       - self-hosted
@@ -316,6 +394,84 @@ jobs:
             quay.io/edgestack/rocky-9-uefi-container-disk:x86_64 --amend
           sudo docker manifest push quay.io/edgestack/rocky-9-uefi-container-disk:latest
           sudo docker manifest rm quay.io/edgestack/rocky-9-uefi-container-disk:latest
+
+  build-debian-11-arm64:
+    runs-on:
+      - self-hosted
+      - linux
+      - arm64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Activate virtualenv
+        run: |
+          . /home/rocky/.venv/bin/activate
+          echo PATH=$PATH >> $GITHUB_ENV
+
+      - name: Build image
+        run: make build-qemu-debian-11-aarch64
+
+      - name: Create Dockerfile
+        run: |
+          cat << EOF > output/Dockerfile
+          FROM alpine
+          ADD debian-11.qcow2 /disk/
+          EOF
+
+      - name: Build & push container image
+        run: |
+          sudo docker build --tag quay.io/edgestack/debian-11-container-disk:aarch64 output
+          sudo docker login quay.io/edgestack -u ${{ secrets.QUAY_USER_NAME }} -p ${{ secrets.QUAY_PASSWORD }}
+          sudo docker push quay.io/edgestack/debian-11-container-disk:aarch64
+
+      - name: Create container image manifests
+        continue-on-error: true
+        run: |
+          sudo docker manifest create quay.io/edgestack/debian-11-container-disk:latest \
+            quay.io/edgestack/debian-11-container-disk:aarch64 \
+            quay.io/edgestack/debian-11-container-disk:x86_64 --amend
+          sudo docker manifest push quay.io/edgestack/debian-11-container-disk:latest
+          sudo docker manifest rm quay.io/edgestack/debian-11-container-disk:latest
+
+  build-debian-12-arm64:
+    runs-on:
+      - self-hosted
+      - linux
+      - arm64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Activate virtualenv
+        run: |
+          . /home/rocky/.venv/bin/activate
+          echo PATH=$PATH >> $GITHUB_ENV
+
+      - name: Build image
+        run: make build-qemu-debian-12-aarch64
+
+      - name: Create Dockerfile
+        run: |
+          cat << EOF > output/Dockerfile
+          FROM alpine
+          ADD debian-12.qcow2 /disk/
+          EOF
+
+      - name: Build & push container image
+        run: |
+          sudo docker build --tag quay.io/edgestack/debian-12-container-disk:aarch64 output
+          sudo docker login quay.io/edgestack -u ${{ secrets.QUAY_USER_NAME }} -p ${{ secrets.QUAY_PASSWORD }}
+          sudo docker push quay.io/edgestack/debian-12-container-disk:aarch64
+
+      - name: Create container image manifests
+        continue-on-error: true
+        run: |
+          sudo docker manifest create quay.io/edgestack/debian-12-container-disk:latest \
+            quay.io/edgestack/debian-12-container-disk:aarch64 \
+            quay.io/edgestack/debian-12-container-disk:x86_64 --amend
+          sudo docker manifest push quay.io/edgestack/debian-12-container-disk:latest
+          sudo docker manifest rm quay.io/edgestack/debian-12-container-disk:latest
 
   build-ubuntu-1804-arm64:
     runs-on:
