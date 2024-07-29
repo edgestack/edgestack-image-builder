@@ -21,3 +21,30 @@
   with_items:
     - cuda-drivers
     - datacenter-gpu-manager
+
+- name: Copy dcgm-exporter binary
+  copy:
+    src: usr/local/bin/dcgm-exporter-{{ binary_arch }}
+    dest: /usr/local/bin/dcgm-exporter
+    mode: '0755'
+
+- name: "Copy dcgm-exporter service service"
+  copy:
+    src: etc/systemd/system/dcgm-exporter.service
+    dest: /etc/systemd/system/dcgm-exporter.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Reload systemd daemon to recognize new service
+  command: systemctl daemon-reload
+
+- name: Enable dcgm-exporter service
+  systemd:
+    name: dcgm-exporter
+    enabled: yes
+
+- name: Start dcgm-exporter service
+  systemd:
+    name: dcgm-exporter
+    state: started

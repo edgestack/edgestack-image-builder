@@ -1,0 +1,16 @@
+[Unit]
+Description=NVIDIA DCGM Exporter
+Documentation=https://docs.nvidia.com/datacenter/cloud-native/gpu-telemetry/latest/dcgm-exporter.html
+Wants=network-online.target
+After=network-online.target
+ 
+[Service]
+User=nodeusr
+Group=nodeusr
+Type=simple
+Restart=on-failure
+ExecStart=/usr/local/bin/dcgm-exporter
+Environment="DCGM_EXPORTER_LISTEN=0.0.0.0:9400"
+ 
+[Install]
+WantedBy=multi-user.target
