@@ -1,0 +1,43 @@
+---
+- name: Install libseccomp package
+  yum:
+    name: libseccomp
+    state: present
+    lock_timeout: 60
+
+- name: Configure nvidia driver repository
+  shell: |
+    curl -s -L https://developer.download.nvidia.com/compute/cuda/repos/rhel9/{{ ansible_architecture }}/cuda-rhel9.repo | \
+    sudo tee /etc/yum.repos.d/cuda-rhel9.repo
+
+- name: Install kernel-devel and kernel-headers
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - kernel-devel
+    - kernel-headers
+
+- name: Install epel-release
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - epel-release
+
+- name: Install dkms
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - dkms
+
+- name: Install nvidia packages
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - nvidia-driver
+    - nvidia-settings
+    - cuda-driver
+    - datacenter-gpu-manager

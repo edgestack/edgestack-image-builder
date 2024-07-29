@@ -8,3 +8,4 @@
     - { role: system, tags: system }
     - { role: node_exporter, tags: node_exporter }
     - { role: sysprep, tags: sysprep }
+    - { role: nvidia, tags: nvidia, when: nvidia_driver | default(false) | bool }

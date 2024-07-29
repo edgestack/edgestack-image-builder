@@ -1,0 +1,23 @@
+---
+- name: Install libseccomp2 package
+  apt:
+    name: libseccomp2
+    state: present
+
+- name: Remove hyphens from build_name
+  set_fact:
+    build_name_no_hyphens: "{{ build_name | replace('-', '') }}"
+
+- name: Configure nvidia driver repository
+  shell: |
+    wget https://developer.download.nvidia.com/compute/cuda/repos/{{ build_name_no_hyphens }}/{{ ansible_architecture }}/cuda-keyring_1.1-1_all.deb && \
+    sudo dpkg -i cuda-keyring_1.1-1_all.deb
+
+- name: Install nvidia packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - cuda-drivers
+    - datacenter-gpu-manager

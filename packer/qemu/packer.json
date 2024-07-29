@@ -69,7 +69,11 @@
         "--extra-vars",
         "{{user `ansible_common_vars`}}",
         "--extra-vars",
-        "{{user `ansible_extra_vars`}}"
+        "{{user `ansible_extra_vars`}}",
+        "--extra-vars",
+        "nvidia_driver={{user `nvidia_driver`}}",
+        "--extra-vars",
+        "build_name={{user `build_name`}}"
       ],
       "playbook_file": "./ansible/node.yml",
       "type": "ansible",
@@ -95,7 +99,8 @@
     "memory": "2048",
     "firmware": "",
     "ssh_password": "builder",
-    "ssh_port": "22"
+    "ssh_port": "22",
+    "nvidia_driver": "false"
   }
 }
 
