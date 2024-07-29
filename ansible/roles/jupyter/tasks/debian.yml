@@ -36,17 +36,17 @@
   become: yes
   become_user: "{{ ansible_user_id }}"
 
-- name: "Copy jupiter-lab service"
+- name: "Copy jupyter-lab service"
   copy:
-    src: etc/systemd/system/jupiterlab.service
-    dest: /etc/systemd/system/jupiterlab.service
+    src: etc/systemd/system/jupyterlab.service
+    dest: /etc/systemd/system/jupyterlab.service
     owner: root
     group: root
     mode: 0644
 
-- name: Start jupiter lab service
+- name: Start jupyter lab service
   systemd:
-    name: jupiterlab
+    name: jupyterlab
     enabled: yes
     daemon_reload: yes
     state: started

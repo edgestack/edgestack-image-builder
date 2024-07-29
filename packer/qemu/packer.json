@@ -73,7 +73,7 @@
         "--extra-vars",
         "nvidia_driver={{user `nvidia_driver`}}",
         "--extra-vars",
-        "jupiter={{user `jupiter`}}",
+        "jupyter={{user `jupyter`}}",
         "--extra-vars",
         "build_name={{user `build_name`}}"
       ],
@@ -103,7 +103,7 @@
     "ssh_password": "builder",
     "ssh_port": "22",
     "nvidia_driver": "false",
-    "jupiter": "false"
+    "jupyter": "false"
   }
 }
 

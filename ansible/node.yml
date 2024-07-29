@@ -9,4 +9,4 @@
     - { role: node_exporter, tags: node_exporter }
     - { role: sysprep, tags: sysprep }
     - { role: nvidia, tags: nvidia, when: nvidia_driver | default(false) | bool }
-    - { role: jupiter, tags: jupiter, when: jupiter | default(false) | bool }
+    - { role: jupyter, tags: jupyter, when: jupyter | default(false) | bool }
