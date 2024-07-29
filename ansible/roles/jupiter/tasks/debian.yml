@@ -1,0 +1,52 @@
+---
+- name: Install pip3
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - python3-pip
+
+- name: Install JupyterLab and Korean language pack
+  pip:
+    name:
+      - jupyterlab
+      - jupyterlab-language-pack-ko-KR
+    state: present
+    executable: pip3
+
+- name: Generate JupyterLab config
+  command: jupyter lab --generate-config
+  become: yes
+  become_user: "{{ ansible_user_id }}"
+
+- name: Set JupyterLab server IP to 0.0.0.0
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.jupyter/jupyter_lab_config.py"
+    regexp: "^c.ServerApp.ip"
+    line: "c.ServerApp.ip = '0.0.0.0'"
+  become: yes
+  become_user: "{{ ansible_user_id }}"
+
+- name: Set JupyterLab server token
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.jupyter/jupyter_lab_config.py"
+    regexp: "^c.ServerApp.token"
+    line: "c.ServerApp.token = '6c4bfd9ffd59618566557195d0f0a733f246545b8b118ca7'"
+  become: yes
+  become_user: "{{ ansible_user_id }}"
+
+- name: "Copy jupiter-lab service"
+  copy:
+    src: etc/systemd/system/jupiterlab.service
+    dest: /etc/systemd/system/jupiterlab.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Start jupiter lab service
+  systemd:
+    name: jupiterlab
+    enabled: yes
+    daemon_reload: yes
+    state: started

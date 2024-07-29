@@ -1,0 +1,12 @@
+[Unit]
+Description=Jupyter Lab Server
+
+[Service]
+Type=service
+PIDFile=/run/jupyter.pid
+User=almalinux
+ExecStart=/usr/local/bin/jupyter-lab
+WorkingDirectory=/home/almalinux
+ 
+[Install]
+WantedBy=multi-user.target

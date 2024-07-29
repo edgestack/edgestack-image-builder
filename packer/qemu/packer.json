@@ -73,6 +73,8 @@
         "--extra-vars",
         "nvidia_driver={{user `nvidia_driver`}}",
         "--extra-vars",
+        "jupiter={{user `jupiter`}}",
+        "--extra-vars",
         "build_name={{user `build_name`}}"
       ],
       "playbook_file": "./ansible/node.yml",
@@ -100,7 +102,8 @@
     "firmware": "",
     "ssh_password": "builder",
     "ssh_port": "22",
-    "nvidia_driver": "false"
+    "nvidia_driver": "false",
+    "jupiter": "false"
   }
 }
 

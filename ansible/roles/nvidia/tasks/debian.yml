@@ -28,7 +28,7 @@
     dest: /usr/local/bin/dcgm-exporter
     mode: '0755'
 
-- name: "Copy dcgm-exporter service service"
+- name: "Copy dcgm-exporter service"
   copy:
     src: etc/systemd/system/dcgm-exporter.service
     dest: /etc/systemd/system/dcgm-exporter.service
@@ -36,15 +36,9 @@
     group: root
     mode: 0644
 
-- name: Reload systemd daemon to recognize new service
-  command: systemctl daemon-reload
-
-- name: Enable dcgm-exporter service
-  systemd:
-    name: dcgm-exporter
-    enabled: yes
-
 - name: Start dcgm-exporter service
   systemd:
     name: dcgm-exporter
+    enabled: yes
+    daemon_reload: yes
     state: started
