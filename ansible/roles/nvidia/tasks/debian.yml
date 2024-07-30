@@ -34,7 +34,23 @@
     dest: /etc/systemd/system/dcgm-exporter.service
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
+
+- name: Ensure /etc/dcgm-exporter directory exists on target
+  file:
+    path: /etc/dcgm-exporter
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy files from local etc/dcgm-exporter to target /etc/dcgm-exporter
+  copy:
+    src: etc/dcgm-exporter/
+    dest: /etc/dcgm-exporter/
+    owner: root
+    group: root
+    mode: '0644'
 
 - name: Start dcgm-exporter service
   systemd:
