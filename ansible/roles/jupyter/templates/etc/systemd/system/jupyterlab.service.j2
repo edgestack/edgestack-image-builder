@@ -4,9 +4,9 @@ Description=Jupyter Lab Server
 [Service]
 Type=service
 PIDFile=/run/jupyter.pid
-User=almalinux
+User={{ ansible_env.SUDO_USER }}
 ExecStart=/usr/local/bin/jupyter-lab
-WorkingDirectory=/home/almalinux
- 
+WorkingDirectory=/home/{{ ansible_env.SUDO_USER }}
+
 [Install]
 WantedBy=multi-user.target
