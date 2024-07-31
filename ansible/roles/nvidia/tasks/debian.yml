@@ -20,15 +20,7 @@
     update_cache: yes
   with_items:
     - cuda-drivers
-  when: not nvidia_vgpu_driver
-
-- name: Install dcgm packages
-  apt:
-    name: "{{ item }}"
-    state: present
-    update_cache: yes
-  with_items:
-    - datacenter-gpu-manager
+  when: not nvidia_vgpu_driver | bool
 
 - name: Ensure /etc/vgpu-driver directory exists on target
   file:
@@ -37,16 +29,15 @@
     owner: root
     group: root
     mode: '0755'
-  when: nvidia_vgpu_driver
+  when: nvidia_vgpu_driver | bool
 
 - name: Install dkms
   apt:
     name: "{{ item }}"
     state: present
-    update_cache: yes
   with_items:
     - dkms
-  when: nvidia_vgpu_driver
+  when: nvidia_vgpu_driver | bool
 
 - name: Copy nvidia vGPU driver install scripts
   copy:
@@ -59,12 +50,19 @@
   shell: cat NVIDIA-Linux-x86_64-550.90.07-grid.run.aa NVIDIA-Linux-x86_64-550.90.07-grid.run.ab NVIDIA-Linux-x86_64-550.90.07-grid.run.ac NVIDIA-Linux-x86_64-550.90.07-grid.run.ad > NVIDIA-Linux-x86_64-550.90.07-grid.run
   args:
     chdir: /tmp/vgpu-driver/
-  when: nvidia_vgpu_driver
+  when: nvidia_vgpu_driver | bool
 
 - name: Run NVIDIA installer
   shell: bash /tmp/vgpu-driver/NVIDIA-Linux-x86_64-550.90.07-grid.run --ui=none --dkms --no-questions
   become: yes
-  when: nvidia_vgpu_driver
+  when: nvidia_vgpu_driver | bool
+
+- name: Install dcgm packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - datacenter-gpu-manager
 
 - name: Copy dcgm-exporter binary
   copy:
