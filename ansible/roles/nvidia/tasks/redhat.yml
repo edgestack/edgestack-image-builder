@@ -40,4 +40,75 @@
     - nvidia-driver
     - nvidia-settings
     - cuda-driver
+  when: not nvidia_vgpu_driver | bool
+
+- name: Ensure /etc/vgpu-driver directory exists on target
+  file:
+    path: /tmp/vgpu-driver
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  when: nvidia_vgpu_driver | bool
+
+- name: Copy nvidia vGPU driver install scripts
+  copy:
+    src: vgpu-driver/
+    dest: /tmp/vgpu-driver/
+    mode: '0755'
+  when: nvidia_vgpu_driver
+
+- name: Assemble nvidia vGPU driver install script
+  shell: cat NVIDIA-Linux-x86_64-550.90.07-grid.run.aa NVIDIA-Linux-x86_64-550.90.07-grid.run.ab NVIDIA-Linux-x86_64-550.90.07-grid.run.ac NVIDIA-Linux-x86_64-550.90.07-grid.run.ad > NVIDIA-Linux-x86_64-550.90.07-grid.run
+  args:
+    chdir: /tmp/vgpu-driver/
+  when: nvidia_vgpu_driver | bool
+
+- name: Run NVIDIA installer
+  shell: bash /tmp/vgpu-driver/NVIDIA-Linux-x86_64-550.90.07-grid.run --ui=none --dkms --no-questions
+  become: yes
+  when: nvidia_vgpu_driver | bool
+
+- name: Install nvidia packages
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
     - datacenter-gpu-manager
+
+- name: Copy dcgm-exporter binary
+  copy:
+    src: usr/local/bin/dcgm-exporter-{{ binary_arch }}
+    dest: /usr/local/bin/dcgm-exporter
+    mode: '0755'
+
+- name: "Copy dcgm-exporter service"
+  copy:
+    src: etc/systemd/system/dcgm-exporter.service
+    dest: /etc/systemd/system/dcgm-exporter.service
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Ensure /etc/dcgm-exporter directory exists on target
+  file:
+    path: /etc/dcgm-exporter
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy files from local etc/dcgm-exporter to target /etc/dcgm-exporter
+  copy:
+    src: etc/dcgm-exporter/
+    dest: /etc/dcgm-exporter/
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Start dcgm-exporter service
+  systemd:
+    name: dcgm-exporter
+    enabled: yes
+    daemon_reload: yes
+    state: started
