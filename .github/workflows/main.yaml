@@ -1,15 +1,28 @@
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - master
+    inputs:
+      os:
+        description: 'Select os to build'
+        required: true
+        default: 'ubuntu-2404'
+        type: choice
+        options:
+          - debian-11
+          - debian-12
+          - ubuntu-2004
+          - ubuntu-2204
+          - ubuntu-2404
+          - almalinux-8
+          - almalinux-9
+          - rockylinux-8
+          - rockylinux-9
 jobs:
-
   build-debian-11-amd64:
     runs-on:
       - self-hosted
       - linux
       - x64
+    if: ${{ github.event.inputs.os == 'debian-11' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -45,6 +58,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/debian-11-container-disk:latest
 
   build-debian-12-amd64:
+    if: ${{ github.event.inputs.os == 'debian-12' }}
     runs-on:
       - self-hosted
       - linux
@@ -84,6 +98,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/debian-12-container-disk:latest
 
   build-ubuntu-1804-amd64:
+    if: ${{ github.event.inputs.os == 'ubuntu-1804' }}
     runs-on:
       - self-hosted
       - linux
@@ -123,6 +138,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/ubuntu-1804-container-disk:latest
 
   build-ubuntu-2004-amd64:
+    if: ${{ github.event.inputs.os == 'ubuntu-2004' }}
     runs-on:
       - self-hosted
       - linux
@@ -162,6 +178,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/ubuntu-2004-container-disk:latest
 
   build-ubuntu-2204-amd64:
+    if: ${{ github.event.inputs.os == 'ubuntu-2204' }}
     runs-on:
       - self-hosted
       - linux
@@ -201,6 +218,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/ubuntu-2204-container-disk:latest
 
   build-ubuntu-2404-amd64:
+    if: ${{ github.event.inputs.os == 'ubuntu-2404' }}
     runs-on:
       - self-hosted
       - linux
@@ -240,6 +258,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/ubuntu-2404-container-disk:latest
 
   build-almalinux-8-amd64:
+    if: ${{ github.event.inputs.os == 'almalinux-8' }}
     runs-on:
       - self-hosted
       - linux
@@ -279,6 +298,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/almalinux-8-container-disk:latest
 
   build-almalinux-9-amd64:
+    if: ${{ github.event.inputs.os == 'almalinux-9' }}
     runs-on:
       - self-hosted
       - linux
@@ -318,6 +338,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/almalinux-9-container-disk:latest
 
   build-rockylinux-8-amd64:
+    if: ${{ github.event.inputs.os == 'rockylinux-8' }}
     runs-on:
       - self-hosted
       - linux
@@ -357,6 +378,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/rocky-8-uefi-container-disk:latest
 
   build-rockylinux-9-amd64:
+    if: ${{ github.event.inputs.os == 'rockylinux-9' }}
     runs-on:
       - self-hosted
       - linux
@@ -396,6 +418,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/rocky-9-uefi-container-disk:latest
 
   build-debian-11-arm64:
+    if: ${{ github.event.inputs.os == 'debian-11' }}
     runs-on:
       - self-hosted
       - linux
@@ -435,6 +458,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/debian-11-container-disk:latest
 
   build-debian-12-arm64:
+    if: ${{ github.event.inputs.os == 'debian-12' }}
     runs-on:
       - self-hosted
       - linux
@@ -474,6 +498,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/debian-12-container-disk:latest
 
   build-ubuntu-1804-arm64:
+    if: ${{ github.event.inputs.os == 'ubuntu-1804' }}
     runs-on:
       - self-hosted
       - linux
@@ -514,6 +539,7 @@ jobs:
 
 
   build-ubuntu-2004-arm64:
+    if: ${{ github.event.inputs.os == 'ubuntu-2004' }}
     runs-on:
       - self-hosted
       - linux
@@ -553,6 +579,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/ubuntu-2004-container-disk:latest
 
   build-ubuntu-2204-arm64:
+    if: ${{ github.event.inputs.os == 'ubuntu-2204' }}
     runs-on:
       - self-hosted
       - linux
@@ -592,6 +619,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/ubuntu-2204-container-disk:latest
 
   build-ubuntu-2404-arm64:
+    if: ${{ github.event.inputs.os == 'ubuntu-2404' }}
     runs-on:
       - self-hosted
       - linux
@@ -631,6 +659,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/ubuntu-2404-container-disk:latest
 
   build-almalinux-8-arm64:
+    if: ${{ github.event.inputs.os == 'almalinux-8' }}
     runs-on:
       - self-hosted
       - linux
@@ -671,6 +700,7 @@ jobs:
 
 
   build-almalinux-9-arm64:
+    if: ${{ github.event.inputs.os == 'almalinux-9' }}
     runs-on:
       - self-hosted
       - linux
@@ -710,6 +740,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/almalinux-9-container-disk:latest
 
   build-rockylinux-8-arm64:
+    if: ${{ github.event.inputs.os == 'rockylinux-8' }}
     runs-on:
       - self-hosted
       - linux
@@ -749,6 +780,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/rocky-8-uefi-container-disk:latest
 
   build-rockylinux-9-arm64:
+    if: ${{ github.event.inputs.os == 'rockylinux-9' }}
     runs-on:
       - self-hosted
       - linux
