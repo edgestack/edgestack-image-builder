@@ -35,6 +35,7 @@
   apt:
     name: "{{ item }}"
     state: present
+    update_cache: yes
   with_items:
     - dkms
   when: nvidia_vgpu_driver | bool
