@@ -65,11 +65,11 @@
   when: nvidia_vgpu_driver | bool
 
 - name: Run NVIDIA installer
-  shell: bash /tmp/vgpu-driver/NVIDIA-Linux-x86_64-550.90.07-grid.run --ui=none --dkms --no-questions
+  shell: bash /tmp/vgpu-driver/NVIDIA-Linux-x86_64-550.90.07-grid.run --ui=none --dkms --no-questions --kernel-source-path=/usr/src/kernels/$(ls /usr/src/kernels/)
   become: yes
   when: nvidia_vgpu_driver | bool
 
-- name: Install nvidia packages
+- name: Install dcgm packages
   yum:
     name: "{{ item }}"
     state: present
