@@ -190,7 +190,7 @@ jobs:
         id: set_tag
         run: |
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" &&  "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ] && [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
               echo "tag=nvidia_vgpu_jupyter_x86_64" >> $GITHUB_ENV
             elif [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
               echo "tag=nvidia_vgpu_x86_64" >> $GITHUB_ENV
@@ -255,7 +255,7 @@ jobs:
         id: set_tag
         run: |
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" &&  "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ] && [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
               echo "tag=nvidia_vgpu_jupyter_x86_64" >> $GITHUB_ENV
             elif [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
               echo "tag=nvidia_vgpu_x86_64" >> $GITHUB_ENV
@@ -320,7 +320,7 @@ jobs:
         id: set_tag
         run: |
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" &&  "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ] && [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
               echo "tag=nvidia_vgpu_jupyter_x86_64" >> $GITHUB_ENV
             elif [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
               echo "tag=nvidia_vgpu_x86_64" >> $GITHUB_ENV
@@ -425,7 +425,7 @@ jobs:
         id: set_tag
         run: |
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" &&  "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ] && [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
               echo "tag=nvidia_vgpu_jupyter_x86_64" >> $GITHUB_ENV
             elif [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
               echo "tag=nvidia_vgpu_x86_64" >> $GITHUB_ENV
@@ -530,7 +530,7 @@ jobs:
         id: set_tag
         run: |
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" &&  "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ] && [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
               echo "tag=nvidia_vgpu_jupyter_x86_64" >> $GITHUB_ENV
             elif [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
               echo "tag=nvidia_vgpu_x86_64" >> $GITHUB_ENV
