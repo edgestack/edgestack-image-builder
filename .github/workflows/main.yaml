@@ -40,7 +40,7 @@ jobs:
       - self-hosted
       - linux
       - x64
-    if: ${{ (github.event.inputs.os == 'debian-11' || github.event.inputs.os == 'all') && !github.event.inputs.nvidia_driver && !github.event.inputs.jupyter }}
+    if: ${{ (github.event.inputs.os == 'debian-11' || github.event.inputs.os == 'all') && github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -76,7 +76,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/debian-11-container-disk:latest
 
   build-debian-12-amd64:
-    if: ${{ (github.event.inputs.os == 'debian-12' || github.event.inputs.os == 'all') && !github.event.inputs.nvidia_driver && !github.event.inputs.jupyter }}
+    if: ${{ (github.event.inputs.os == 'debian-12' || github.event.inputs.os == 'all') && github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
     runs-on:
       - self-hosted
       - linux
@@ -116,7 +116,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/debian-12-container-disk:latest
 
   build-ubuntu-1804-amd64:
-    if: ${{ (github.event.inputs.os == 'ubuntu-1804' || github.event.inputs.os == 'all') && !github.event.inputs.nvidia_driver && !github.event.inputs.jupyter }}
+    if: ${{ (github.event.inputs.os == 'ubuntu-1804' || github.event.inputs.os == 'all') && github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
     runs-on:
       - self-hosted
       - linux
@@ -211,7 +211,7 @@ jobs:
           sudo docker push quay.io/edgestack/ubuntu-2004-container-disk:${{ env.tag }}
 
       - name: Create container image manifests
-        if: ${{ !github.event.inputs.nvidia_driver && !github.event.inputs.jupyter }}
+        if: ${{ github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
         continue-on-error: true
         run: |
           sudo docker manifest create quay.io/edgestack/ubuntu-2004-container-disk:latest \
@@ -276,7 +276,7 @@ jobs:
           sudo docker push quay.io/edgestack/ubuntu-2204-container-disk:${{ env.tag }}
 
       - name: Create container image manifests
-        if: ${{ !github.event.inputs.nvidia_driver && !github.event.inputs.jupyter }}
+        if: ${{ github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
         continue-on-error: true
         run: |
           sudo docker manifest create quay.io/edgestack/ubuntu-2204-container-disk:latest \
@@ -341,7 +341,7 @@ jobs:
           sudo docker push quay.io/edgestack/ubuntu-2404-container-disk:${{ env.tag }}
 
       - name: Create container image manifests
-        if: ${{ !github.event.inputs.nvidia_driver && !github.event.inputs.jupyter }}
+        if: ${{ github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
         continue-on-error: true
         run: |
           sudo docker manifest create quay.io/edgestack/ubuntu-2404-container-disk:latest \
@@ -351,7 +351,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/ubuntu-2404-container-disk:latest
 
   build-almalinux-8-amd64:
-    if: ${{ (github.event.inputs.os == 'almalinux-8' || github.event.inputs.os == 'all') && !github.event.inputs.nvidia_driver && !github.event.inputs.jupyter }}
+    if: ${{ (github.event.inputs.os == 'almalinux-8' || github.event.inputs.os == 'all') && github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
     runs-on:
       - self-hosted
       - linux
@@ -446,7 +446,7 @@ jobs:
           sudo docker push quay.io/edgestack/almalinux-9-container-disk:${{ env.tag }}
 
       - name: Create container image manifests
-        if: ${{ !github.event.inputs.nvidia_driver && !github.event.inputs.jupyter }}
+        if: ${{ github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
         continue-on-error: true
         run: |
           sudo docker manifest create quay.io/edgestack/almalinux-9-container-disk:latest \
@@ -456,7 +456,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/almalinux-9-container-disk:latest
 
   build-rockylinux-8-amd64:
-    if: ${{ (github.event.inputs.os == 'rockylinux-8' || github.event.inputs.os == 'all') && !github.event.inputs.nvidia_driver && !github.event.inputs.jupyter }}
+    if: ${{ (github.event.inputs.os == 'rockylinux-8' || github.event.inputs.os == 'all') && github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
     runs-on:
       - self-hosted
       - linux
@@ -551,7 +551,7 @@ jobs:
           sudo docker push quay.io/edgestack/rocky-9-uefi-container-disk:${{ env.tag }}
 
       - name: Create container image manifests
-        if: ${{ !github.event.inputs.nvidia_driver && !github.event.inputs.jupyter }}
+        if: ${{ github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
         continue-on-error: true
         run: |
           sudo docker manifest create quay.io/edgestack/rocky-9-uefi-container-disk:latest \
@@ -561,7 +561,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/rocky-9-uefi-container-disk:latest
 
   build-debian-11-arm64:
-    if: ${{ (github.event.inputs.os == 'debian-11' || github.event.inputs.os == 'all') && !github.event.inputs.nvidia_driver && !github.event.inputs.jupyter }}
+    if: ${{ (github.event.inputs.os == 'debian-11' || github.event.inputs.os == 'all') && github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
     runs-on:
       - self-hosted
       - linux
@@ -601,7 +601,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/debian-11-container-disk:latest
 
   build-debian-12-arm64:
-    if: ${{ (github.event.inputs.os == 'debian-12' || github.event.inputs.os == 'all') && !github.event.inputs.nvidia_driver && !github.event.inputs.jupyter }}
+    if: ${{ (github.event.inputs.os == 'debian-12' || github.event.inputs.os == 'all') && github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
     runs-on:
       - self-hosted
       - linux
@@ -641,7 +641,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/debian-12-container-disk:latest
 
   build-ubuntu-1804-arm64:
-    if: ${{ (github.event.inputs.os == 'ubuntu-1804' || github.event.inputs.os == 'all') && !github.event.inputs.nvidia_driver && !github.event.inputs.jupyter }}
+    if: ${{ (github.event.inputs.os == 'ubuntu-1804' || github.event.inputs.os == 'all') && github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
     runs-on:
       - self-hosted
       - linux
@@ -682,7 +682,7 @@ jobs:
 
 
   build-ubuntu-2004-arm64:
-    if: ${{ (github.event.inputs.os == 'ubuntu-2004' || github.event.inputs.os == 'all') && !github.event.inputs.nvidia_driver && !github.event.inputs.jupyter }}
+    if: ${{ (github.event.inputs.os == 'ubuntu-2004' || github.event.inputs.os == 'all') && github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
     runs-on:
       - self-hosted
       - linux
@@ -722,7 +722,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/ubuntu-2004-container-disk:latest
 
   build-ubuntu-2204-arm64:
-    if: ${{ (github.event.inputs.os == 'ubuntu-2204' || github.event.inputs.os == 'all') && !github.event.inputs.nvidia_driver && !github.event.inputs.jupyter }}
+    if: ${{ (github.event.inputs.os == 'ubuntu-2204' || github.event.inputs.os == 'all') && github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
     runs-on:
       - self-hosted
       - linux
@@ -762,7 +762,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/ubuntu-2204-container-disk:latest
 
   build-ubuntu-2404-arm64:
-    if: ${{ (github.event.inputs.os == 'ubuntu-2404' || github.event.inputs.os == 'all') && !github.event.inputs.nvidia_driver && !github.event.inputs.jupyter }}
+    if: ${{ (github.event.inputs.os == 'ubuntu-2404' || github.event.inputs.os == 'all') && github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
     runs-on:
       - self-hosted
       - linux
@@ -802,7 +802,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/ubuntu-2404-container-disk:latest
 
   build-almalinux-8-arm64:
-    if: ${{ (github.event.inputs.os == 'almalinux-8' || github.event.inputs.os == 'all') && !github.event.inputs.nvidia_driver && !github.event.inputs.jupyter }}
+    if: ${{ (github.event.inputs.os == 'almalinux-8' || github.event.inputs.os == 'all') && github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
     runs-on:
       - self-hosted
       - linux
@@ -843,7 +843,7 @@ jobs:
 
 
   build-almalinux-9-arm64:
-    if: ${{ (github.event.inputs.os == 'almalinux-9' || github.event.inputs.os == 'all') && !github.event.inputs.nvidia_driver && !github.event.inputs.jupyter }}
+    if: ${{ (github.event.inputs.os == 'almalinux-9' || github.event.inputs.os == 'all') && github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
     runs-on:
       - self-hosted
       - linux
@@ -883,7 +883,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/almalinux-9-container-disk:latest
 
   build-rockylinux-8-arm64:
-    if: ${{ (github.event.inputs.os == 'rockylinux-8' || github.event.inputs.os == 'all') && !github.event.inputs.nvidia_driver && !github.event.inputs.jupyter }}
+    if: ${{ (github.event.inputs.os == 'rockylinux-8' || github.event.inputs.os == 'all') && github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
     runs-on:
       - self-hosted
       - linux
@@ -923,7 +923,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/rocky-8-uefi-container-disk:latest
 
   build-rockylinux-9-arm64:
-    if: ${{ (github.event.inputs.os == 'rockylinux-9' || github.event.inputs.os == 'all') && !github.event.inputs.nvidia_driver && !github.event.inputs.jupyter }}
+    if: ${{ (github.event.inputs.os == 'rockylinux-9' || github.event.inputs.os == 'all') && github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
     runs-on:
       - self-hosted
       - linux
