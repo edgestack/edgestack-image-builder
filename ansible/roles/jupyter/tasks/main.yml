@@ -24,22 +24,19 @@
     state: present
     executable: pip3
 
-- name: Generate JupyterLab config
-  command: jupyter lab --generate-config
-  become: yes
-  become_user: "{{ ansible_env.SUDO_USER }}"
+- name: Ensure jupyter config directory exists on target
+  file:
+    path: /home/{{ ansible_env.SUDO_USER }}/.jupyter
+    state: directory
+    owner: "{{ ansible_env.SUDO_USER }}"
+    group: "{{ ansible_env.SUDO_USER }}"
+    mode: '0755'
 
-- name: Set JupyterLab server IP to 0.0.0.0
-  lineinfile:
-    path: "/home/{{ ansible_env.SUDO_USER }}/.jupyter/jupyter_lab_config.py"
-    regexp: "^c.ServerApp.ip"
-    line: "c.ServerApp.ip = '0.0.0.0'"
-
-- name: Set JupyterLab server token
-  lineinfile:
-    path: "/home/{{ ansible_env.SUDO_USER }}/.jupyter/jupyter_lab_config.py"
-    regexp: "^c.ServerApp.token"
-    line: "c.ServerApp.token = '6c4bfd9ffd59618566557195d0f0a733f246545b8b118ca7'"
+- name: Copy jupyter lab config
+  copy:
+    src: jupyter_lab_config.py
+    dest: "/home/{{ ansible_env.SUDO_USER }}/.jupyter/jupyter_lab_config.py"
+    mode: '0644'
 
 - name: "Copy jupyter-lab service"
   template:
