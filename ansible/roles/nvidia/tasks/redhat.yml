@@ -7,8 +7,15 @@
 
 - name: Configure nvidia driver repository
   shell: |
-    curl -s -L https://developer.download.nvidia.com/compute/cuda/repos/rhel9/{{ ansible_architecture }}/cuda-rhel9.repo | \
+    curl -s -L https://developer.download.nvidia.com/compute/cuda/repos/rhel9/x86_64/cuda-rhel9.repo | \
     sudo tee /etc/yum.repos.d/cuda-rhel9.repo
+  when: ansible_architecture == "x86_64"
+
+- name: Configure nvidia driver repository
+  shell: |
+    curl -s -L https://developer.download.nvidia.com/compute/cuda/repos/rhel9/sbsa/cuda-rhel9.repo | \
+    sudo tee /etc/yum.repos.d/cuda-rhel9.repo
+  when: ansible_architecture == "aarch64"
 
 - name: Install kernel-devel and kernel-headers
   yum:
@@ -37,9 +44,7 @@
     name: "{{ item }}"
     state: present
   with_items:
-    - nvidia-driver
-    - nvidia-settings
-    - cuda-driver
+    - cuda-drivers
   when: not nvidia_vgpu_driver | bool
 
 - name: Ensure /etc/vgpu-driver directory exists on target

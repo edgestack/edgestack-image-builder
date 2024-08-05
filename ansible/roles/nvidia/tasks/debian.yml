@@ -10,8 +10,15 @@
 
 - name: Configure nvidia driver repository
   shell: |
-    wget https://developer.download.nvidia.com/compute/cuda/repos/{{ build_name_no_hyphens }}/{{ ansible_architecture }}/cuda-keyring_1.1-1_all.deb && \
+    wget https://developer.download.nvidia.com/compute/cuda/repos/{{ build_name_no_hyphens }}/x86_64/cuda-keyring_1.1-1_all.deb && \
     sudo dpkg -i cuda-keyring_1.1-1_all.deb
+  when: ansible_architecture == "x86_64"
+
+- name: Configure nvidia driver repository
+  shell: |
+    wget https://developer.download.nvidia.com/compute/cuda/repos/{{ build_name_no_hyphens }}/sbsa/cuda-keyring_1.1-1_all.deb && \
+    sudo dpkg -i cuda-keyring_1.1-1_all.deb
+  when: ansible_architecture == "aarch64"
 
 - name: Install nvidia packages
   apt:
