@@ -44,7 +44,8 @@
     name: "{{ item }}"
     state: present
   with_items:
-    - cuda-drivers
+    - nvidia-driver
+    - nvidia-settings
   when: not nvidia_vgpu_driver | bool
 
 - name: Ensure /etc/vgpu-driver directory exists on target
