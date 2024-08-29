@@ -5,7 +5,7 @@ Description=Jupyter Lab Server
 Type=service
 PIDFile=/run/jupyter.pid
 User={{ ansible_env.SUDO_USER }}
-ExecStart=/usr/local/bin/jupyter-lab
+ExecStart=/usr/local/bin/jupyter-lab --config=/home/{{ ansible_env.SUDO_USER }}/.jupyter/jupyter_lab_config.py
 WorkingDirectory=/home/{{ ansible_env.SUDO_USER }}
 
 [Install]
