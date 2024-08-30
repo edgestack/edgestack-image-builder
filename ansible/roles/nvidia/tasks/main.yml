@@ -4,6 +4,3 @@
 
 - import_tasks: redhat.yml
   when: ansible_os_family == "RedHat"
-
-- import_tasks: redhat.yml
-  when: ansible_os_family == "Rocky"

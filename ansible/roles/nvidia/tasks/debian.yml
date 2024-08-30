@@ -108,3 +108,13 @@
     enabled: yes
     daemon_reload: yes
     state: started
+
+- name: Try to relocate the PCI devices for full GPU passthrough
+  lineinfile:
+    path: /etc/default/grub
+    regexp: '^GRUB_CMDLINE_LINUX="(.*)"'
+    line: 'GRUB_CMDLINE_LINUX="\1 pci=nocrs,realloc"'
+    backrefs: yes
+
+- name: Updating grub
+  command: update-grub

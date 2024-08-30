@@ -118,3 +118,7 @@
     enabled: yes
     daemon_reload: yes
     state: started
+
+- name: Try to relocate the PCI devices for full GPU passthrough
+  command: >
+    grubby --update-kernel=ALL --args="pci=nocrs,realloc"
