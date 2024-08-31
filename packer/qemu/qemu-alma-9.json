@@ -4,8 +4,8 @@
   "ssh_username": "almalinux",
   "os_display_name": "Alma 9.4",
   "guest_os_type": "linux-64",
-  "iso_url": "https://repo.almalinux.org/almalinux/9/cloud/x86_64/images/AlmaLinux-9-GenericCloud-9.4-20240507.x86_64.qcow2",
-  "iso_checksum": "bff0885c804c01fff8aac4b70c9ca4f04e8c119f9ee102043838f33e06f58390",
+  "iso_url": "https://repo.almalinux.org/almalinux/9/cloud/x86_64/images/AlmaLinux-9-GenericCloud-9.4-20240805.x86_64.qcow2",
+  "iso_checksum": "4f2984589020c0d82b9a410cf9e29715a607c948dfdca652025cdc79ddb5e816",
   "iso_checksum_type": "sha256",
   "shutdown_command": "shutdown -P now",
   "ansible_python_interpreter": "/usr/bin/python3"

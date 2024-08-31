@@ -7,8 +7,8 @@
   "machine_type": "virt",
   "qemu_binary": "qemu-system-aarch64",
   "firmware": "/usr/share/edk2/aarch64/QEMU_EFI.fd",
-  "iso_url": "https://repo.almalinux.org/almalinux/8/cloud/aarch64/images/AlmaLinux-8-GenericCloud-8.10-20240530.aarch64.qcow2",
-  "iso_checksum": "5508d4df26925806da507f59b4990e996ef982de3d546a356891acc87e161c32",
+  "iso_url": "https://repo.almalinux.org/almalinux/8/cloud/aarch64/images/AlmaLinux-8-GenericCloud-8.10-20240819.aarch64.qcow2",
+  "iso_checksum": "cec6736cbc562d06895e218b6f022621343c553bfa79192ca491381b4636c7b8",
   "iso_checksum_type": "sha256",
   "shutdown_command": "shutdown -P now",
   "ansible_python_interpreter": "/usr/bin/python3"

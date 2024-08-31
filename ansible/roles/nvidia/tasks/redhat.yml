@@ -22,8 +22,8 @@
     name: "{{ item }}"
     state: present
   with_items:
-    - kernel-devel
-    - kernel-headers
+    - "kernel-devel-{{ ansible_kernel }}"
+    - "kernel-headers-{{ ansible_kernel }}"
 
 - name: Install epel-release
   yum:
