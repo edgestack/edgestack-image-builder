@@ -5,8 +5,8 @@ Wants=network-online.target
 After=network-online.target
  
 [Service]
-User=nodeusr
-Group=nodeusr
+User=root
+Group=root
 Type=simple
 Restart=on-failure
 ExecStart=/usr/local/bin/dcgm-exporter
