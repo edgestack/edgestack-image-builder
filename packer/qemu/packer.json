@@ -97,7 +97,7 @@
     "ansible_extra_vars": "",
     "cloud_init_image": "cloud-init/packer.init",
     "cpus": "2",
-    "disk_size": "10240",
+    "disk_size": "14336",
     "format": "qcow2",
     "headless": "true",
     "memory": "2048",
