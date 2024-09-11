@@ -74,6 +74,8 @@
         "nvidia_driver={{user `nvidia_driver`}}",
         "--extra-vars",
         "nvidia_vgpu_driver={{user `nvidia_vgpu_driver`}}",
+	"--extra-vars",
+        "fabric_manager={{user `fabric_manager`}}",
         "--extra-vars",
         "jupyter={{user `jupyter`}}",
         "--extra-vars",
@@ -106,6 +108,7 @@
     "ssh_port": "22",
     "nvidia_driver": "false",
     "nvidia_vgpu_driver": "false",
+    "fabric_manager": "false",
     "jupyter": "false"
   }
 }
