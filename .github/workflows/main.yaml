@@ -34,6 +34,11 @@ on:
         required: true
         default: false
         type: boolean
+      fabric_manager:
+        description: 'Install Fabric Manager'
+        required: true
+        default: false
+        type: boolean
 jobs:
   build-debian-11-amd64:
     runs-on:
@@ -233,7 +238,7 @@ jobs:
       - name: Update additional package options
         run: |
           jq \
-            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
+            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}" | .variables.fabric_manager = "${{ github.event.inputs.fabric_manager }}"' \
             packer/qemu/packer.json > tmp.json
           mv tmp.json packer/qemu/packer.json
 
@@ -262,6 +267,8 @@ jobs:
               echo "tag=nvidia_vgpu_x86_64" >> $GITHUB_ENV
             elif [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
               echo "tag=nvidia_jupyter_x86_64" >> $GITHUB_ENV
+            elif [ "${{ github.event.inputs.fabric_manager }}" == "true" ]; then
+              echo "tag=nvidia_fm_x86_64" >> $GITHUB_ENV
             else
               echo "tag=nvidia_x86_64" >> $GITHUB_ENV
             fi
@@ -755,7 +762,7 @@ jobs:
       - name: Update additional package options
         run: |
           jq \
-            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
+            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}" | .variables.fabric_manager = "${{ github.event.inputs.fabric_manager }}"' \
             packer/qemu/packer.json > tmp.json
           mv tmp.json packer/qemu/packer.json
 
@@ -780,6 +787,8 @@ jobs:
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
             if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
               echo "tag=nvidia_jupyter_aarch64" >> $GITHUB_ENV
+            elif [ "${{ github.event.inputs.fabric_manager }}" == "true" ]; then
+              echo "tag=nvidia_fm_aarch64" >> $GITHUB_ENV
             else
               echo "tag=nvidia_aarch64" >> $GITHUB_ENV
             fi
