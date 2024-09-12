@@ -18,5 +18,5 @@
     name: nvidia-fabricmanager
     enabled: yes
     daemon_reload: yes
-    state: restarted
+    state: stopped
   when: fabric_manager | bool
