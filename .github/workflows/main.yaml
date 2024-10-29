@@ -358,7 +358,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/ubuntu-2404-container-disk:latest
 
   build-almalinux-8-amd64:
-    if: ${{ (github.event.inputs.os == 'almalinux-8' || github.event.inputs.os == 'all') && github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
+    if: ${{ github.event.inputs.os == 'almalinux-8' || github.event.inputs.os == 'all' }}
     runs-on:
       - self-hosted
       - linux
@@ -366,6 +366,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Update additional package options
+        run: |
+          jq \
+            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
+            packer/qemu/packer.json > tmp.json
+          mv tmp.json packer/qemu/packer.json
 
       - name: Activate virtualenv
         run: |
@@ -382,13 +389,31 @@ jobs:
           ADD alma-8.qcow2 /disk/
           EOF
 
+      - name: Set tag variable based on inputs
+        id: set_tag
+        run: |
+          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
+            if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ] && [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+              echo "tag=nvidia_vgpu_jupyter_x86_64" >> $GITHUB_ENV
+            elif [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
+              echo "tag=nvidia_vgpu_x86_64" >> $GITHUB_ENV
+            elif [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+              echo "tag=nvidia_jupyter_x86_64" >> $GITHUB_ENV
+            else
+              echo "tag=nvidia_x86_64" >> $GITHUB_ENV
+            fi
+          else
+            echo "tag=x86_64" >> $GITHUB_ENV
+          fi
+
       - name: Build & push container image
         run: |
-          sudo docker build --tag quay.io/edgestack/almalinux-8-container-disk:x86_64 output
+          sudo docker build --tag quay.io/edgestack/almalinux-8-container-disk:${{ env.tag }} output
           sudo docker login quay.io/edgestack -u ${{ secrets.QUAY_USER_NAME }} -p ${{ secrets.QUAY_PASSWORD }}
-          sudo docker push quay.io/edgestack/almalinux-8-container-disk:x86_64
+          sudo docker push quay.io/edgestack/almalinux-8-container-disk:${{ env.tag }}
 
       - name: Create container image manifests
+        if: ${{ github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
         continue-on-error: true
         run: |
           sudo docker manifest create quay.io/edgestack/almalinux-8-container-disk:latest \
@@ -463,7 +488,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/almalinux-9-container-disk:latest
 
   build-rockylinux-8-amd64:
-    if: ${{ (github.event.inputs.os == 'rockylinux-8' || github.event.inputs.os == 'all') && github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
+    if: ${{ (github.event.inputs.os == 'rockylinux-8' || github.event.inputs.os == 'all') }}
     runs-on:
       - self-hosted
       - linux
@@ -471,6 +496,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Update additional package options
+        run: |
+          jq \
+            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
+            packer/qemu/packer.json > tmp.json
+          mv tmp.json packer/qemu/packer.json
 
       - name: Activate virtualenv
         run: |
@@ -487,13 +519,31 @@ jobs:
           ADD rocky-8.qcow2 /disk/
           EOF
 
+      - name: Set tag variable based on inputs
+        id: set_tag
+        run: |
+          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
+            if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ] && [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+              echo "tag=nvidia_vgpu_jupyter_x86_64" >> $GITHUB_ENV
+            elif [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
+              echo "tag=nvidia_vgpu_x86_64" >> $GITHUB_ENV
+            elif [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+              echo "tag=nvidia_jupyter_x86_64" >> $GITHUB_ENV
+            else
+              echo "tag=nvidia_x86_64" >> $GITHUB_ENV
+            fi
+          else
+            echo "tag=x86_64" >> $GITHUB_ENV
+          fi
+
       - name: Build & push container image
         run: |
-          sudo docker build --tag quay.io/edgestack/rocky-8-uefi-container-disk:x86_64 output
+          sudo docker build --tag quay.io/edgestack/rocky-8-uefi-container-disk:${{ env.tag }} output
           sudo docker login quay.io/edgestack -u ${{ secrets.QUAY_USER_NAME }} -p ${{ secrets.QUAY_PASSWORD }}
-          sudo docker push quay.io/edgestack/rocky-8-uefi-container-disk:x86_64
+          sudo docker push quay.io/edgestack/rocky-8-uefi-container-disk:${{ env.tag }}
 
       - name: Create container image manifests
+        if: ${{ github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
         continue-on-error: true
         run: |
           sudo docker manifest create quay.io/edgestack/rocky-8-uefi-container-disk:latest \
@@ -874,7 +924,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/ubuntu-2404-container-disk:latest
 
   build-almalinux-8-arm64:
-    if: ${{ (github.event.inputs.os == 'almalinux-8' || github.event.inputs.os == 'all') && github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
+    if: ${{ (github.event.inputs.os == 'almalinux-8' || github.event.inputs.os == 'all') && github.event.inputs.nvidia_vgpu_driver == 'false' }}
     runs-on:
       - self-hosted
       - linux
@@ -882,6 +932,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Update additional package options
+        run: |
+          jq \
+            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
+            packer/qemu/packer.json > tmp.json
+          mv tmp.json packer/qemu/packer.json
 
       - name: Activate virtualenv
         run: |
@@ -898,13 +955,27 @@ jobs:
           ADD alma-8.qcow2 /disk/
           EOF
 
+      - name: Set tag variable based on inputs
+        id: set_tag
+        run: |
+          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
+            if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+              echo "tag=nvidia_jupyter_aarch64" >> $GITHUB_ENV
+            else
+              echo "tag=nvidia_aarch64" >> $GITHUB_ENV
+            fi
+          else
+            echo "tag=aarch64" >> $GITHUB_ENV
+          fi
+
       - name: Build & push container image
         run: |
-          sudo docker build --tag quay.io/edgestack/almalinux-8-container-disk:aarch64 output
+          sudo docker build --tag quay.io/edgestack/almalinux-8-container-disk:${{ env.tag }} output
           sudo docker login quay.io/edgestack -u ${{ secrets.QUAY_USER_NAME }} -p ${{ secrets.QUAY_PASSWORD }}
-          sudo docker push quay.io/edgestack/almalinux-8-container-disk:aarch64
+          sudo docker push quay.io/edgestack/almalinux-8-container-disk:${{ env.tag }}
 
       - name: Create container image manifests
+        if: ${{ github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
         continue-on-error: true
         run: |
           sudo docker manifest create quay.io/edgestack/almalinux-8-container-disk:latest \
@@ -976,7 +1047,7 @@ jobs:
           sudo docker manifest rm quay.io/edgestack/almalinux-9-container-disk:latest
 
   build-rockylinux-8-arm64:
-    if: ${{ (github.event.inputs.os == 'rockylinux-8' || github.event.inputs.os == 'all') && github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
+    if: ${{ (github.event.inputs.os == 'rockylinux-8' || github.event.inputs.os == 'all') && github.event.inputs.nvidia_vgpu_driver == 'false' }}
     runs-on:
       - self-hosted
       - linux
@@ -984,6 +1055,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Update additional package options
+        run: |
+          jq \
+            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
+            packer/qemu/packer.json > tmp.json
+          mv tmp.json packer/qemu/packer.json
 
       - name: Activate virtualenv
         run: |
@@ -1000,13 +1078,27 @@ jobs:
           ADD rocky-8.qcow2 /disk/
           EOF
 
+      - name: Set tag variable based on inputs
+        id: set_tag
+        run: |
+          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
+            if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+              echo "tag=nvidia_jupyter_aarch64" >> $GITHUB_ENV
+            else
+              echo "tag=nvidia_aarch64" >> $GITHUB_ENV
+            fi
+          else
+            echo "tag=aarch64" >> $GITHUB_ENV
+          fi
+
       - name: Build & push container image
         run: |
-          sudo docker build --tag quay.io/edgestack/rocky-8-uefi-container-disk:aarch64 output
+          sudo docker build --tag quay.io/edgestack/rocky-8-uefi-container-disk:${{ env.tag }} output
           sudo docker login quay.io/edgestack -u ${{ secrets.QUAY_USER_NAME }} -p ${{ secrets.QUAY_PASSWORD }}
-          sudo docker push quay.io/edgestack/rocky-8-uefi-container-disk:aarch64
+          sudo docker push quay.io/edgestack/rocky-8-uefi-container-disk:${{ env.tag }}
 
       - name: Create container image manifests
+        if: ${{ github.event.inputs.nvidia_driver == 'false' && github.event.inputs.jupyter == 'false' }}
         continue-on-error: true
         run: |
           sudo docker manifest create quay.io/edgestack/rocky-8-uefi-container-disk:latest \
