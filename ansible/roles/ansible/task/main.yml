@@ -1,3 +1,4 @@
+---
 - name: Install epel-release
   yum:
     name: epel-release
@@ -15,3 +16,4 @@
     name: ansible
     state: present
     update_cache: yes
+  when: ansible_os_family == "Debian"
