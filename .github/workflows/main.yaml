@@ -77,11 +77,29 @@ jobs:
           ADD debian-11.qcow2 /disk/
           EOF
 
+      - name: Set tag variable based on inputs
+        id: set_tag
+        run: |
+          tag="x86_64"
+          if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            tag="jupyter_${tag}"
+          fi
+          if [ "${{ github.event.inputs.ansible }}" == "true" ]; then
+            tag="ansible_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
+            tag="vgpu_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
+            tag="nvidia_${tag}"
+          fi
+          echo "tag=${tag}" >> $GITHUB_ENV
+
       - name: Build & push container image
         run: |
-          sudo docker build --tag quay.io/edgestack/debian-11-container-disk:x86_64 output
+          sudo docker build --tag quay.io/edgestack/debian-11-container-disk:${{ env.tag }} output
           sudo docker login quay.io/edgestack -u ${{ secrets.QUAY_USER_NAME }} -p ${{ secrets.QUAY_PASSWORD }}
-          sudo docker push quay.io/edgestack/debian-11-container-disk:x86_64
+          sudo docker push quay.io/edgestack/debian-11-container-disk:${{ env.tag }}
 
       - name: Create container image manifests
         continue-on-error: true
@@ -124,11 +142,29 @@ jobs:
           ADD debian-12.qcow2 /disk/
           EOF
 
+      - name: Set tag variable based on inputs
+        id: set_tag
+        run: |
+          tag="x86_64"
+          if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            tag="jupyter_${tag}"
+          fi
+          if [ "${{ github.event.inputs.ansible }}" == "true" ]; then
+            tag="ansible_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
+            tag="vgpu_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
+            tag="nvidia_${tag}"
+          fi
+          echo "tag=${tag}" >> $GITHUB_ENV
+
       - name: Build & push container image
         run: |
-          sudo docker build --tag quay.io/edgestack/debian-12-container-disk:x86_64 output
+          sudo docker build --tag quay.io/edgestack/debian-12-container-disk:${{ env.tag }} output
           sudo docker login quay.io/edgestack -u ${{ secrets.QUAY_USER_NAME }} -p ${{ secrets.QUAY_PASSWORD }}
-          sudo docker push quay.io/edgestack/debian-12-container-disk:x86_64
+          sudo docker push quay.io/edgestack/debian-12-container-disk:${{ env.tag }}
 
       - name: Create container image manifests
         continue-on-error: true
@@ -171,12 +207,29 @@ jobs:
           ADD ubuntu-1804.qcow2 /disk/
           EOF
 
+      - name: Set tag variable based on inputs
+        id: set_tag
+        run: |
+          tag="x86_64"
+          if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            tag="jupyter_${tag}"
+          fi
+          if [ "${{ github.event.inputs.ansible }}" == "true" ]; then
+            tag="ansible_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
+            tag="vgpu_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
+            tag="nvidia_${tag}"
+          fi
+          echo "tag=${tag}" >> $GITHUB_ENV
+
       - name: Build & push container image
         run: |
-          sudo docker build --tag quay.io/edgestack/ubuntu-1804-container-disk:x86_64 output
+          sudo docker build --tag quay.io/edgestack/ubuntu-1804-container-disk:${{ env.tag }} output
           sudo docker login quay.io/edgestack -u ${{ secrets.QUAY_USER_NAME }} -p ${{ secrets.QUAY_PASSWORD }}
-          sudo docker push quay.io/edgestack/ubuntu-1804-container-disk:x86_64
-
+          sudo docker push quay.io/edgestack/ubuntu-1804-container-disk:${{ env.tag }}${{ env.tag }}
       - name: Create container image manifests
         continue-on-error: true
         run: |
@@ -228,19 +281,20 @@ jobs:
       - name: Set tag variable based on inputs
         id: set_tag
         run: |
-          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ] && [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
-              echo "tag=nvidia_vgpu_jupyter_x86_64" >> $GITHUB_ENV
-            elif [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
-              echo "tag=nvidia_vgpu_x86_64" >> $GITHUB_ENV
-            elif [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
-              echo "tag=nvidia_jupyter_x86_64" >> $GITHUB_ENV
-            else
-              echo "tag=nvidia_x86_64" >> $GITHUB_ENV
-            fi
-          else
-            echo "tag=x86_64" >> $GITHUB_ENV
+          tag="x86_64"
+          if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            tag="jupyter_${tag}"
           fi
+          if [ "${{ github.event.inputs.ansible }}" == "true" ]; then
+            tag="ansible_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
+            tag="vgpu_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
+            tag="nvidia_${tag}"
+          fi
+          echo "tag=${tag}" >> $GITHUB_ENV
 
       - name: Build & push container image
         run: |
@@ -300,21 +354,20 @@ jobs:
       - name: Set tag variable based on inputs
         id: set_tag
         run: |
-          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ] && [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
-              echo "tag=nvidia_vgpu_jupyter_x86_64" >> $GITHUB_ENV
-            elif [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
-              echo "tag=nvidia_vgpu_x86_64" >> $GITHUB_ENV
-            elif [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
-              echo "tag=nvidia_jupyter_x86_64" >> $GITHUB_ENV
-            elif [ "${{ github.event.inputs.fabric_manager }}" == "true" ]; then
-              echo "tag=nvidia_fm_x86_64" >> $GITHUB_ENV
-            else
-              echo "tag=nvidia_x86_64" >> $GITHUB_ENV
-            fi
-          else
-            echo "tag=x86_64" >> $GITHUB_ENV
+          tag="x86_64"
+          if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            tag="jupyter_${tag}"
           fi
+          if [ "${{ github.event.inputs.ansible }}" == "true" ]; then
+            tag="ansible_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
+            tag="vgpu_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
+            tag="nvidia_${tag}"
+          fi
+          echo "tag=${tag}" >> $GITHUB_ENV
 
       - name: Build & push container image
         run: |
@@ -374,19 +427,20 @@ jobs:
       - name: Set tag variable based on inputs
         id: set_tag
         run: |
-          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ] && [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
-              echo "tag=nvidia_vgpu_jupyter_x86_64" >> $GITHUB_ENV
-            elif [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
-              echo "tag=nvidia_vgpu_x86_64" >> $GITHUB_ENV
-            elif [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
-              echo "tag=nvidia_jupyter_x86_64" >> $GITHUB_ENV
-            else
-              echo "tag=nvidia_x86_64" >> $GITHUB_ENV
-            fi
-          else
-            echo "tag=x86_64" >> $GITHUB_ENV
+          tag="x86_64"
+          if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            tag="jupyter_${tag}"
           fi
+          if [ "${{ github.event.inputs.ansible }}" == "true" ]; then
+            tag="ansible_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
+            tag="vgpu_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
+            tag="nvidia_${tag}"
+          fi
+          echo "tag=${tag}" >> $GITHUB_ENV
 
       - name: Build & push container image
         run: |
@@ -446,19 +500,20 @@ jobs:
       - name: Set tag variable based on inputs
         id: set_tag
         run: |
-          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ] && [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
-              echo "tag=nvidia_vgpu_jupyter_x86_64" >> $GITHUB_ENV
-            elif [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
-              echo "tag=nvidia_vgpu_x86_64" >> $GITHUB_ENV
-            elif [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
-              echo "tag=nvidia_jupyter_x86_64" >> $GITHUB_ENV
-            else
-              echo "tag=nvidia_x86_64" >> $GITHUB_ENV
-            fi
-          else
-            echo "tag=x86_64" >> $GITHUB_ENV
+          tag="x86_64"
+          if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            tag="jupyter_${tag}"
           fi
+          if [ "${{ github.event.inputs.ansible }}" == "true" ]; then
+            tag="ansible_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
+            tag="vgpu_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
+            tag="nvidia_${tag}"
+          fi
+          echo "tag=${tag}" >> $GITHUB_ENV
 
       - name: Build & push container image
         run: |
@@ -518,19 +573,20 @@ jobs:
       - name: Set tag variable based on inputs
         id: set_tag
         run: |
-          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ] && [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
-              echo "tag=nvidia_vgpu_jupyter_x86_64" >> $GITHUB_ENV
-            elif [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
-              echo "tag=nvidia_vgpu_x86_64" >> $GITHUB_ENV
-            elif [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
-              echo "tag=nvidia_jupyter_x86_64" >> $GITHUB_ENV
-            else
-              echo "tag=nvidia_x86_64" >> $GITHUB_ENV
-            fi
-          else
-            echo "tag=x86_64" >> $GITHUB_ENV
+          tag="x86_64"
+          if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            tag="jupyter_${tag}"
           fi
+          if [ "${{ github.event.inputs.ansible }}" == "true" ]; then
+            tag="ansible_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
+            tag="vgpu_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
+            tag="nvidia_${tag}"
+          fi
+          echo "tag=${tag}" >> $GITHUB_ENV
 
       - name: Build & push container image
         run: |
@@ -590,19 +646,20 @@ jobs:
       - name: Set tag variable based on inputs
         id: set_tag
         run: |
-          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ] && [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
-              echo "tag=nvidia_vgpu_jupyter_x86_64" >> $GITHUB_ENV
-            elif [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
-              echo "tag=nvidia_vgpu_x86_64" >> $GITHUB_ENV
-            elif [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
-              echo "tag=nvidia_jupyter_x86_64" >> $GITHUB_ENV
-            else
-              echo "tag=nvidia_x86_64" >> $GITHUB_ENV
-            fi
-          else
-            echo "tag=x86_64" >> $GITHUB_ENV
+          tag="x86_64"
+          if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            tag="jupyter_${tag}"
           fi
+          if [ "${{ github.event.inputs.ansible }}" == "true" ]; then
+            tag="ansible_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
+            tag="vgpu_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
+            tag="nvidia_${tag}"
+          fi
+          echo "tag=${tag}" >> $GITHUB_ENV
 
       - name: Build & push container image
         run: |
@@ -662,19 +719,20 @@ jobs:
       - name: Set tag variable based on inputs
         id: set_tag
         run: |
-          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ] && [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
-              echo "tag=nvidia_vgpu_jupyter_x86_64" >> $GITHUB_ENV
-            elif [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
-              echo "tag=nvidia_vgpu_x86_64" >> $GITHUB_ENV
-            elif [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
-              echo "tag=nvidia_jupyter_x86_64" >> $GITHUB_ENV
-            else
-              echo "tag=nvidia_x86_64" >> $GITHUB_ENV
-            fi
-          else
-            echo "tag=x86_64" >> $GITHUB_ENV
+          tag="x86_64"
+          if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            tag="jupyter_${tag}"
           fi
+          if [ "${{ github.event.inputs.ansible }}" == "true" ]; then
+            tag="ansible_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
+            tag="vgpu_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
+            tag="nvidia_${tag}"
+          fi
+          echo "tag=${tag}" >> $GITHUB_ENV
 
       - name: Build & push container image
         run: |
@@ -724,11 +782,29 @@ jobs:
           ADD debian-11.qcow2 /disk/
           EOF
 
+      - name: Set tag variable based on inputs
+        id: set_tag
+        run: |
+          tag="aarch64"
+          if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            tag="jupyter_${tag}"
+          fi
+          if [ "${{ github.event.inputs.ansible }}" == "true" ]; then
+            tag="ansible_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
+            tag="vgpu_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
+            tag="nvidia_${tag}"
+          fi
+          echo "tag=${tag}" >> $GITHUB_ENV
+
       - name: Build & push container image
         run: |
-          sudo docker build --tag quay.io/edgestack/debian-11-container-disk:aarch64 output
+          sudo docker build --tag quay.io/edgestack/debian-11-container-disk:${{ env.tag }} output
           sudo docker login quay.io/edgestack -u ${{ secrets.QUAY_USER_NAME }} -p ${{ secrets.QUAY_PASSWORD }}
-          sudo docker push quay.io/edgestack/debian-11-container-disk:aarch64
+          sudo docker push quay.io/edgestack/debian-11-container-disk:${{ env.tag }}
 
       - name: Create container image manifests
         continue-on-error: true
@@ -771,11 +847,29 @@ jobs:
           ADD debian-12.qcow2 /disk/
           EOF
 
+      - name: Set tag variable based on inputs
+        id: set_tag
+        run: |
+          tag="aarch64"
+          if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            tag="jupyter_${tag}"
+          fi
+          if [ "${{ github.event.inputs.ansible }}" == "true" ]; then
+            tag="ansible_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
+            tag="vgpu_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
+            tag="nvidia_${tag}"
+          fi
+          echo "tag=${tag}" >> $GITHUB_ENV
+
       - name: Build & push container image
         run: |
-          sudo docker build --tag quay.io/edgestack/debian-12-container-disk:aarch64 output
+          sudo docker build --tag quay.io/edgestack/debian-12-container-disk:${{ env.tag }} output
           sudo docker login quay.io/edgestack -u ${{ secrets.QUAY_USER_NAME }} -p ${{ secrets.QUAY_PASSWORD }}
-          sudo docker push quay.io/edgestack/debian-12-container-disk:aarch64
+          sudo docker push quay.io/edgestack/debian-12-container-disk:${{ env.tag }}
 
       - name: Create container image manifests
         continue-on-error: true
@@ -818,11 +912,29 @@ jobs:
           ADD ubuntu-1804.qcow2 /disk/
           EOF
 
+      - name: Set tag variable based on inputs
+        id: set_tag
+        run: |
+          tag="aarch64"
+          if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            tag="jupyter_${tag}"
+          fi
+          if [ "${{ github.event.inputs.ansible }}" == "true" ]; then
+            tag="ansible_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
+            tag="vgpu_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
+            tag="nvidia_${tag}"
+          fi
+          echo "tag=${tag}" >> $GITHUB_ENV
+
       - name: Build & push container image
         run: |
-          sudo docker build --tag quay.io/edgestack/ubuntu-1804-container-disk:aarch64 output
+          sudo docker build --tag quay.io/edgestack/ubuntu-1804-container-disk:${{ env.tag }} output
           sudo docker login quay.io/edgestack -u ${{ secrets.QUAY_USER_NAME }} -p ${{ secrets.QUAY_PASSWORD }}
-          sudo docker push quay.io/edgestack/ubuntu-1804-container-disk:aarch64
+          sudo docker push quay.io/edgestack/ubuntu-1804-container-disk:${{ env.tag }}
 
       - name: Create container image manifests
         continue-on-error: true
@@ -876,15 +988,20 @@ jobs:
       - name: Set tag variable based on inputs
         id: set_tag
         run: |
-          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
-              echo "tag=nvidia_jupyter_aarch64" >> $GITHUB_ENV
-            else
-              echo "tag=nvidia_aarch64" >> $GITHUB_ENV
-            fi
-          else
-            echo "tag=aarch64" >> $GITHUB_ENV
+          tag="aarch64"
+          if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            tag="jupyter_${tag}"
           fi
+          if [ "${{ github.event.inputs.ansible }}" == "true" ]; then
+            tag="ansible_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
+            tag="vgpu_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
+            tag="nvidia_${tag}"
+          fi
+          echo "tag=${tag}" >> $GITHUB_ENV
 
       - name: Build & push container image
         run: |
@@ -944,17 +1061,20 @@ jobs:
       - name: Set tag variable based on inputs
         id: set_tag
         run: |
-          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
-              echo "tag=nvidia_jupyter_aarch64" >> $GITHUB_ENV
-            elif [ "${{ github.event.inputs.fabric_manager }}" == "true" ]; then
-              echo "tag=nvidia_fm_aarch64" >> $GITHUB_ENV
-            else
-              echo "tag=nvidia_aarch64" >> $GITHUB_ENV
-            fi
-          else
-            echo "tag=aarch64" >> $GITHUB_ENV
+          tag="aarch64"
+          if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            tag="jupyter_${tag}"
           fi
+          if [ "${{ github.event.inputs.ansible }}" == "true" ]; then
+            tag="ansible_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
+            tag="vgpu_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
+            tag="nvidia_${tag}"
+          fi
+          echo "tag=${tag}" >> $GITHUB_ENV
 
       - name: Build & push container image
         run: |
@@ -1014,15 +1134,20 @@ jobs:
       - name: Set tag variable based on inputs
         id: set_tag
         run: |
-          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
-              echo "tag=nvidia_jupyter_aarch64" >> $GITHUB_ENV
-            else
-              echo "tag=nvidia_aarch64" >> $GITHUB_ENV
-            fi
-          else
-            echo "tag=aarch64" >> $GITHUB_ENV
+          tag="aarch64"
+          if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            tag="jupyter_${tag}"
           fi
+          if [ "${{ github.event.inputs.ansible }}" == "true" ]; then
+            tag="ansible_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
+            tag="vgpu_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
+            tag="nvidia_${tag}"
+          fi
+          echo "tag=${tag}" >> $GITHUB_ENV
 
       - name: Build & push container image
         run: |
@@ -1082,15 +1207,20 @@ jobs:
       - name: Set tag variable based on inputs
         id: set_tag
         run: |
-          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
-              echo "tag=nvidia_jupyter_aarch64" >> $GITHUB_ENV
-            else
-              echo "tag=nvidia_aarch64" >> $GITHUB_ENV
-            fi
-          else
-            echo "tag=aarch64" >> $GITHUB_ENV
+          tag="aarch64"
+          if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            tag="jupyter_${tag}"
           fi
+          if [ "${{ github.event.inputs.ansible }}" == "true" ]; then
+            tag="ansible_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
+            tag="vgpu_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
+            tag="nvidia_${tag}"
+          fi
+          echo "tag=${tag}" >> $GITHUB_ENV
 
       - name: Build & push container image
         run: |
@@ -1151,15 +1281,20 @@ jobs:
       - name: Set tag variable based on inputs
         id: set_tag
         run: |
-          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
-              echo "tag=nvidia_jupyter_aarch64" >> $GITHUB_ENV
-            else
-              echo "tag=nvidia_aarch64" >> $GITHUB_ENV
-            fi
-          else
-            echo "tag=aarch64" >> $GITHUB_ENV
+          tag="aarch64"
+          if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            tag="jupyter_${tag}"
           fi
+          if [ "${{ github.event.inputs.ansible }}" == "true" ]; then
+            tag="ansible_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
+            tag="vgpu_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
+            tag="nvidia_${tag}"
+          fi
+          echo "tag=${tag}" >> $GITHUB_ENV
 
       - name: Build & push container image
         run: |
@@ -1219,15 +1354,20 @@ jobs:
       - name: Set tag variable based on inputs
         id: set_tag
         run: |
-          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
-              echo "tag=nvidia_jupyter_aarch64" >> $GITHUB_ENV
-            else
-              echo "tag=nvidia_aarch64" >> $GITHUB_ENV
-            fi
-          else
-            echo "tag=aarch64" >> $GITHUB_ENV
+          tag="aarch64"
+          if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            tag="jupyter_${tag}"
           fi
+          if [ "${{ github.event.inputs.ansible }}" == "true" ]; then
+            tag="ansible_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
+            tag="vgpu_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
+            tag="nvidia_${tag}"
+          fi
+          echo "tag=${tag}" >> $GITHUB_ENV
 
       - name: Build & push container image
         run: |
@@ -1287,15 +1427,20 @@ jobs:
       - name: Set tag variable based on inputs
         id: set_tag
         run: |
-          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
-              echo "tag=nvidia_jupyter_aarch64" >> $GITHUB_ENV
-            else
-              echo "tag=nvidia_aarch64" >> $GITHUB_ENV
-            fi
-          else
-            echo "tag=aarch64" >> $GITHUB_ENV
+          tag="aarch64"
+          if [ "${{ github.event.inputs.jupyter }}" == "true" ]; then
+            tag="jupyter_${tag}"
           fi
+          if [ "${{ github.event.inputs.ansible }}" == "true" ]; then
+            tag="ansible_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_vgpu_driver }}" == "true" ]; then
+            tag="vgpu_${tag}"
+          fi
+          if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
+            tag="nvidia_${tag}"
+          fi
+          echo "tag=${tag}" >> $GITHUB_ENV
 
       - name: Build & push container image
         run: |

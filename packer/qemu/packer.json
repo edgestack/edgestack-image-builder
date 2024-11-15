@@ -74,7 +74,7 @@
         "nvidia_driver={{user `nvidia_driver`}}",
         "--extra-vars",
         "nvidia_vgpu_driver={{user `nvidia_vgpu_driver`}}",
-	    "--extra-vars",
+        "--extra-vars",
         "fabric_manager={{user `fabric_manager`}}",
         "--extra-vars",
         "jupyter={{user `jupyter`}}",
