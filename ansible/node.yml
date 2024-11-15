@@ -10,3 +10,4 @@
     - { role: sysprep, tags: sysprep }
     - { role: nvidia, tags: nvidia, when: nvidia_driver | default(false) | bool }
     - { role: jupyter, tags: jupyter, when: jupyter | default(false) | bool }
+    - { role: ansible, tags: ansible, when: ansible | default(false) | bool }

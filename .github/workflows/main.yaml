@@ -39,6 +39,11 @@ on:
         required: true
         default: false
         type: boolean
+      ansible:
+        description: 'Install Ansible'
+        required: true
+        default: false
+        type: boolean
 jobs:
   build-debian-11-amd64:
     runs-on:
@@ -49,6 +54,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Update Ansible package options
+        run: |
+          jq \
+            '.variables.ansible = "${{ github.event.inputs.ansible }}"' \
+            packer/qemu/packer.json > tmp.json
+          mv tmp.json packer/qemu/packer.json
 
       - name: Activate virtualenv
         run: |
@@ -89,6 +101,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Update Ansible package options
+        run: |
+          jq \
+            '.variables.ansible = "${{ github.event.inputs.ansible }}"' \
+            packer/qemu/packer.json > tmp.json
+          mv tmp.json packer/qemu/packer.json
 
       - name: Activate virtualenv
         run: |
@@ -129,6 +148,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Update Ansible package options
+        run: |
+          jq \
+            '.variables.ansible = "${{ github.event.inputs.ansible }}"' \
+            packer/qemu/packer.json > tmp.json
+          mv tmp.json packer/qemu/packer.json
 
       - name: Activate virtualenv
         run: |
@@ -169,8 +195,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Update Ansible package options
+        run: |
+          jq \
+            '.variables.ansible = "${{ github.event.inputs.ansible }}"' \
+            packer/qemu/packer.json > tmp.json
+          mv tmp.json packer/qemu/packer.json
 
-      - name: Update additional package options
+      - name: Update Nvidia package options
         run: |
           jq \
             '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
@@ -234,8 +267,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Update Ansible package options
+        run: |
+          jq \
+            '.variables.ansible = "${{ github.event.inputs.ansible }}"' \
+            packer/qemu/packer.json > tmp.json
+          mv tmp.json packer/qemu/packer.json
 
-      - name: Update additional package options
+      - name: Update Nvidia package options
         run: |
           jq \
             '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}" | .variables.fabric_manager = "${{ github.event.inputs.fabric_manager }}"' \
@@ -301,8 +341,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Update Ansible package options
+        run: |
+          jq \
+            '.variables.ansible = "${{ github.event.inputs.ansible }}"' \
+            packer/qemu/packer.json > tmp.json
+          mv tmp.json packer/qemu/packer.json
 
-      - name: Update additional package options
+      - name: Update Nvidia package options
         run: |
           jq \
             '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
@@ -366,8 +413,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Update Ansible package options
+        run: |
+          jq \
+            '.variables.ansible = "${{ github.event.inputs.ansible }}"' \
+            packer/qemu/packer.json > tmp.json
+          mv tmp.json packer/qemu/packer.json
 
-      - name: Update additional package options
+      - name: Update Nvidia package options
         run: |
           jq \
             '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
@@ -431,8 +485,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Update Ansible package options
+        run: |
+          jq \
+            '.variables.ansible = "${{ github.event.inputs.ansible }}"' \
+            packer/qemu/packer.json > tmp.json
+          mv tmp.json packer/qemu/packer.json
 
-      - name: Update additional package options
+      - name: Update Nvidia package options
         run: |
           jq \
             '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
@@ -496,8 +557,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Update Ansible package options
+        run: |
+          jq \
+            '.variables.ansible = "${{ github.event.inputs.ansible }}"' \
+            packer/qemu/packer.json > tmp.json
+          mv tmp.json packer/qemu/packer.json
 
-      - name: Update additional package options
+      - name: Update Nvidia package options
         run: |
           jq \
             '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
@@ -561,8 +629,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Update Ansible package options
+        run: |
+          jq \
+            '.variables.ansible = "${{ github.event.inputs.ansible }}"' \
+            packer/qemu/packer.json > tmp.json
+          mv tmp.json packer/qemu/packer.json
 
-      - name: Update additional package options
+      - name: Update Nvidia package options
         run: |
           jq \
             '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
@@ -626,6 +701,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Update Ansible package options
+        run: |
+          jq \
+            '.variables.ansible = "${{ github.event.inputs.ansible }}"' \
+            packer/qemu/packer.json > tmp.json
+          mv tmp.json packer/qemu/packer.json
 
       - name: Activate virtualenv
         run: |
@@ -666,6 +748,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Update Ansible package options
+        run: |
+          jq \
+            '.variables.ansible = "${{ github.event.inputs.ansible }}"' \
+            packer/qemu/packer.json > tmp.json
+          mv tmp.json packer/qemu/packer.json
 
       - name: Activate virtualenv
         run: |
@@ -706,6 +795,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Update Ansible package options
+        run: |
+          jq \
+            '.variables.ansible = "${{ github.event.inputs.ansible }}"' \
+            packer/qemu/packer.json > tmp.json
+          mv tmp.json packer/qemu/packer.json
 
       - name: Activate virtualenv
         run: |
@@ -747,8 +843,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Update Ansible package options
+        run: |
+          jq \
+            '.variables.ansible = "${{ github.event.inputs.ansible }}"' \
+            packer/qemu/packer.json > tmp.json
+          mv tmp.json packer/qemu/packer.json
 
-      - name: Update additional package options
+      - name: Update Nvidia package options
         run: |
           jq \
             '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
@@ -808,8 +911,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Update Ansible package options
+        run: |
+          jq \
+            '.variables.ansible = "${{ github.event.inputs.ansible }}"' \
+            packer/qemu/packer.json > tmp.json
+          mv tmp.json packer/qemu/packer.json
 
-      - name: Update additional package options
+      - name: Update Nvidia package options
         run: |
           jq \
             '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}" | .variables.fabric_manager = "${{ github.event.inputs.fabric_manager }}"' \
@@ -871,8 +981,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Update Ansible package options
+        run: |
+          jq \
+            '.variables.ansible = "${{ github.event.inputs.ansible }}"' \
+            packer/qemu/packer.json > tmp.json
+          mv tmp.json packer/qemu/packer.json
 
-      - name: Update additional package options
+      - name: Update Nvidia package options
         run: |
           jq \
             '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
@@ -932,8 +1049,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Update Ansible package options
+        run: |
+          jq \
+            '.variables.ansible = "${{ github.event.inputs.ansible }}"' \
+            packer/qemu/packer.json > tmp.json
+          mv tmp.json packer/qemu/packer.json
 
-      - name: Update additional package options
+      - name: Update Nvidia package options
         run: |
           jq \
             '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
@@ -994,8 +1118,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Update Ansible package options
+        run: |
+          jq \
+            '.variables.ansible = "${{ github.event.inputs.ansible }}"' \
+            packer/qemu/packer.json > tmp.json
+          mv tmp.json packer/qemu/packer.json
 
-      - name: Update additional package options
+      - name: Update Nvidia package options
         run: |
           jq \
             '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
@@ -1055,8 +1186,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Update Ansible package options
+        run: |
+          jq \
+            '.variables.ansible = "${{ github.event.inputs.ansible }}"' \
+            packer/qemu/packer.json > tmp.json
+          mv tmp.json packer/qemu/packer.json
 
-      - name: Update additional package options
+      - name: Update Nvidia package options
         run: |
           jq \
             '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
@@ -1116,8 +1254,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Update Ansible package options
+        run: |
+          jq \
+            '.variables.ansible = "${{ github.event.inputs.ansible }}"' \
+            packer/qemu/packer.json > tmp.json
+          mv tmp.json packer/qemu/packer.json
 
-      - name: Update additional package options
+      - name: Update Nvidia package options
         run: |
           jq \
             '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \

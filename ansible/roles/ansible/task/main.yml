@@ -1,0 +1,17 @@
+- name: Install epel-release
+  yum:
+    name: epel-release
+    state: present
+  when: ansible_os_family == "RedHat"
+
+- name: Install Ansible packages
+  yum:
+    name: ansible
+    state: present
+  when: ansible_os_family == "RedHat"
+
+- name: Install Ansible packages
+  apt:
+    name: ansible
+    state: present
+    update_cache: yes
