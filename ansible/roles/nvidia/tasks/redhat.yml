@@ -43,6 +43,10 @@
   with_items:
     - dkms
 
+- name: Install NVIDIA Driver module
+  command: dnf module install -y nvidia-driver
+  when: not nvidia_vgpu_driver | bool
+
 - name: Install nvidia packages
   yum:
     name: "{{ item }}"
@@ -51,6 +55,7 @@
     - nvidia-driver
     - nvidia-settings
   when: not nvidia_vgpu_driver | bool
+
 
 - name: Ensure /etc/vgpu-driver directory exists on target
   file:
