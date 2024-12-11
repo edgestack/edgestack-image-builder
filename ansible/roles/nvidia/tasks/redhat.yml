@@ -5,20 +5,16 @@
     state: present
     lock_timeout: 60
 
-- name: Extract RHEL version from build_name
-  set_fact:
-    rhel_version: "{{ build_name | regex_search('\\d+$') }}"
-
 - name: Configure nvidia driver repository
   shell: |
-    curl -s -L https://developer.download.nvidia.com/compute/cuda/repos/rhel{{ rhel_version }}/x86_64/cuda-rhel{{ rhel_version }}.repo | \
-    sudo tee /etc/yum.repos.d/cuda-rhel{{ rhel_version }}.repo
+    curl -s -L https://developer.download.nvidia.com/compute/cuda/repos/rhel{{ ansible_distribution_version }}/x86_64/cuda-rhel{{ ansible_distribution_version }}.repo | \
+    sudo tee /etc/yum.repos.d/cuda-rhel{{ ansible_distribution_version }}.repo
   when: ansible_architecture == "x86_64"
 
 - name: Configure nvidia driver repository
   shell: |
-    curl -s -L https://developer.download.nvidia.com/compute/cuda/repos/rhel{{ rhel_version }}/sbsa/cuda-rhel{{ rhel_version }}.repo | \
-    sudo tee /etc/yum.repos.d/cuda-rhel{{ rhel_version }}.repo
+    curl -s -L https://developer.download.nvidia.com/compute/cuda/repos/rhel{{ rhel_version }}/sbsa/cuda-rhel{{ ansible_distribution_version }}.repo | \
+    sudo tee /etc/yum.repos.d/cuda-rhel{{ ansible_distribution_version }}.repo
   when: ansible_architecture == "aarch64"
 
 - name: Install kernel-devel and kernel-headers
@@ -26,8 +22,8 @@
     name: "{{ item }}"
     state: present
   with_items:
-    - "kernel-devel-{{ ansible_kernel }}"
-    - "kernel-headers-{{ ansible_kernel }}"
+    - "kernel-devel"
+    - "kernel-headers"
 
 - name: Install epel-release
   yum:
@@ -53,26 +49,9 @@
     state: present
   when: ansible_architecture == "aarch64"
 
-- name: Install dkms
-  yum:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - dkms
-
 - name: Install NVIDIA Driver module
   command: dnf module install -y nvidia-driver
   when: not nvidia_vgpu_driver | bool
-
-- name: Install nvidia packages
-  yum:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - nvidia-driver
-    - nvidia-settings
-  when: not nvidia_vgpu_driver | bool
-
 
 - name: Ensure /etc/vgpu-driver directory exists on target
   file:

@@ -1,4 +1,9 @@
 ---
+- name: Extract RHEL version from build_name
+  set_fact:
+    rhel_version: "{{ build_name | regex_search('\\d+$') }}"
+  when: ansible_os_family == "RedHat" or ansible_os_family == "Rocky"
+
 - name: Install pip3
   apt:
     name: "{{ item }}"
@@ -13,9 +18,16 @@
     name: "{{ item }}"
     state: present
   with_items:
-    - python39
+    - python39-pip
+  when: ansible_os_family in ["RedHat", "Rocky"] and ansible_distribution_version == "8"
+
+- name: Install pip3
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
     - python3-pip
-  when: ansible_os_family == "RedHat" or ansible_os_family == "Rocky"
+  when: ansible_os_family in ["RedHat", "Rocky"] and ansible_distribution_version == "9"
 
 - name: Install JupyterLab and Korean language pack
   pip:
