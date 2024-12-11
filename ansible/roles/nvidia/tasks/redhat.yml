@@ -5,16 +5,20 @@
     state: present
     lock_timeout: 60
 
+- name: Extract RHEL version from build_name
+  set_fact:
+    rhel_version: "{{ build_name | regex_search('\\d+$') }}"
+
 - name: Configure nvidia driver repository
   shell: |
-    curl -s -L https://developer.download.nvidia.com/compute/cuda/repos/rhel{{ ansible_distribution_version }}/x86_64/cuda-rhel{{ ansible_distribution_version }}.repo | \
-    sudo tee /etc/yum.repos.d/cuda-rhel{{ ansible_distribution_version }}.repo
+    curl -s -L https://developer.download.nvidia.com/compute/cuda/repos/rhel{{ rhel_version }}/x86_64/cuda-rhel{{ rhel_version }}.repo | \
+    sudo tee /etc/yum.repos.d/cuda-rhel{{ rhel_version }}.repo
   when: ansible_architecture == "x86_64"
 
 - name: Configure nvidia driver repository
   shell: |
-    curl -s -L https://developer.download.nvidia.com/compute/cuda/repos/rhel{{ rhel_version }}/sbsa/cuda-rhel{{ ansible_distribution_version }}.repo | \
-    sudo tee /etc/yum.repos.d/cuda-rhel{{ ansible_distribution_version }}.repo
+    curl -s -L https://developer.download.nvidia.com/compute/cuda/repos/rhel{{ rhel_version }}/sbsa/cuda-rhel{{ rhel_version }}.repo | \
+    sudo tee /etc/yum.repos.d/cuda-rhel{{ rhel_version }}.repo
   when: ansible_architecture == "aarch64"
 
 - name: Install kernel-devel and kernel-headers
