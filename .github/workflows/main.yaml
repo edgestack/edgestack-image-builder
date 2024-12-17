@@ -107,7 +107,7 @@ jobs:
           sudo docker manifest create quay.io/edgestack/debian-11-container-disk:latest \
             quay.io/edgestack/debian-11-container-disk:aarch64 \
             quay.io/edgestack/debian-11-container-disk:x86_64 --amend
-          sudo docker manifest push quay.io/edgestack/debian-11-container-disk:latest
+          sudo docker manifest push quay.io/edgestack/debian-11-container-disk:latest --format v2s2
           sudo docker manifest rm quay.io/edgestack/debian-11-container-disk:latest
 
   build-debian-12-amd64:
@@ -172,7 +172,7 @@ jobs:
           sudo docker manifest create quay.io/edgestack/debian-12-container-disk:latest \
             quay.io/edgestack/debian-12-container-disk:aarch64 \
             quay.io/edgestack/debian-12-container-disk:x86_64 --amend
-          sudo docker manifest push quay.io/edgestack/debian-12-container-disk:latest
+          sudo docker manifest push quay.io/edgestack/debian-12-container-disk:latest --format v2s2
           sudo docker manifest rm quay.io/edgestack/debian-12-container-disk:latest
 
   build-ubuntu-1804-amd64:
@@ -236,7 +236,7 @@ jobs:
           sudo docker manifest create quay.io/edgestack/ubuntu-1804-container-disk:latest \
             quay.io/edgestack/ubuntu-1804-container-disk:aarch64 \
             quay.io/edgestack/ubuntu-1804-container-disk:x86_64 --amend
-          sudo docker manifest push quay.io/edgestack/ubuntu-1804-container-disk:latest
+          sudo docker manifest push quay.io/edgestack/ubuntu-1804-container-disk:latest --format v2s2
           sudo docker manifest rm quay.io/edgestack/ubuntu-1804-container-disk:latest
 
   build-ubuntu-2004-amd64:
@@ -309,7 +309,7 @@ jobs:
           sudo docker manifest create quay.io/edgestack/ubuntu-2004-container-disk:latest \
             quay.io/edgestack/ubuntu-2004-container-disk:aarch64 \
             quay.io/edgestack/ubuntu-2004-container-disk:x86_64 --amend
-          sudo docker manifest push quay.io/edgestack/ubuntu-2004-container-disk:latest
+          sudo docker manifest push quay.io/edgestack/ubuntu-2004-container-disk:latest --format v2s2
           sudo docker manifest rm quay.io/edgestack/ubuntu-2004-container-disk:latest
 
   build-ubuntu-2204-amd64:
@@ -382,7 +382,7 @@ jobs:
           sudo docker manifest create quay.io/edgestack/ubuntu-2204-container-disk:latest \
             quay.io/edgestack/ubuntu-2204-container-disk:aarch64 \
             quay.io/edgestack/ubuntu-2204-container-disk:x86_64 --amend
-          sudo docker manifest push quay.io/edgestack/ubuntu-2204-container-disk:latest
+          sudo docker manifest push quay.io/edgestack/ubuntu-2204-container-disk:latest --format v2s2
           sudo docker manifest rm quay.io/edgestack/ubuntu-2204-container-disk:latest
 
   build-ubuntu-2404-amd64:
@@ -455,7 +455,7 @@ jobs:
           sudo docker manifest create quay.io/edgestack/ubuntu-2404-container-disk:latest \
             quay.io/edgestack/ubuntu-2404-container-disk:aarch64 \
             quay.io/edgestack/ubuntu-2404-container-disk:x86_64 --amend
-          sudo docker manifest push quay.io/edgestack/ubuntu-2404-container-disk:latest
+          sudo docker manifest push quay.io/edgestack/ubuntu-2404-container-disk:latest --format v2s2
           sudo docker manifest rm quay.io/edgestack/ubuntu-2404-container-disk:latest
 
   build-almalinux-8-amd64:
@@ -528,7 +528,7 @@ jobs:
           sudo docker manifest create quay.io/edgestack/almalinux-8-container-disk:latest \
             quay.io/edgestack/almalinux-8-container-disk:aarch64 \
             quay.io/edgestack/almalinux-8-container-disk:x86_64 --amend
-          sudo docker manifest push quay.io/edgestack/almalinux-8-container-disk:latest
+          sudo docker manifest push quay.io/edgestack/almalinux-8-container-disk:latest --format v2s2
           sudo docker manifest rm quay.io/edgestack/almalinux-8-container-disk:latest
 
   build-almalinux-9-amd64:
@@ -601,7 +601,7 @@ jobs:
           sudo docker manifest create quay.io/edgestack/almalinux-9-container-disk:latest \
             quay.io/edgestack/almalinux-9-container-disk:aarch64 \
             quay.io/edgestack/almalinux-9-container-disk:x86_64 --amend
-          sudo docker manifest push quay.io/edgestack/almalinux-9-container-disk:latest
+          sudo docker manifest push quay.io/edgestack/almalinux-9-container-disk:latest --format v2s2
           sudo docker manifest rm quay.io/edgestack/almalinux-9-container-disk:latest
 
   build-rockylinux-8-amd64:
@@ -674,7 +674,7 @@ jobs:
           sudo docker manifest create quay.io/edgestack/rocky-8-uefi-container-disk:latest \
             quay.io/edgestack/rocky-8-uefi-container-disk:aarch64 \
             quay.io/edgestack/rocky-8-uefi-container-disk:x86_64 --amend
-          sudo docker manifest push quay.io/edgestack/rocky-8-uefi-container-disk:latest
+          sudo docker manifest push quay.io/edgestack/rocky-8-uefi-container-disk:latest --format v2s2
           sudo docker manifest rm quay.io/edgestack/rocky-8-uefi-container-disk:latest
 
   build-rockylinux-9-amd64:
@@ -747,7 +747,7 @@ jobs:
           sudo docker manifest create quay.io/edgestack/rocky-9-uefi-container-disk:latest \
             quay.io/edgestack/rocky-9-uefi-container-disk:aarch64 \
             quay.io/edgestack/rocky-9-uefi-container-disk:x86_64 --amend
-          sudo docker manifest push quay.io/edgestack/rocky-9-uefi-container-disk:latest
+          sudo docker manifest push quay.io/edgestack/rocky-9-uefi-container-disk:latest --format v2s2
           sudo docker manifest rm quay.io/edgestack/rocky-9-uefi-container-disk:latest
 
   build-debian-11-arm64:
@@ -812,7 +812,7 @@ jobs:
           sudo docker manifest create quay.io/edgestack/debian-11-container-disk:latest \
             quay.io/edgestack/debian-11-container-disk:aarch64 \
             quay.io/edgestack/debian-11-container-disk:x86_64 --amend
-          sudo docker manifest push quay.io/edgestack/debian-11-container-disk:latest
+          sudo docker manifest push quay.io/edgestack/debian-11-container-disk:latest --format v2s2
           sudo docker manifest rm quay.io/edgestack/debian-11-container-disk:latest
 
   build-debian-12-arm64:
@@ -877,7 +877,7 @@ jobs:
           sudo docker manifest create quay.io/edgestack/debian-12-container-disk:latest \
             quay.io/edgestack/debian-12-container-disk:aarch64 \
             quay.io/edgestack/debian-12-container-disk:x86_64 --amend
-          sudo docker manifest push quay.io/edgestack/debian-12-container-disk:latest
+          sudo docker manifest push quay.io/edgestack/debian-12-container-disk:latest --format v2s2
           sudo docker manifest rm quay.io/edgestack/debian-12-container-disk:latest
 
   build-ubuntu-1804-arm64:
@@ -942,7 +942,7 @@ jobs:
           sudo docker manifest create quay.io/edgestack/ubuntu-1804-container-disk:latest \
             quay.io/edgestack/ubuntu-1804-container-disk:aarch64 \
             quay.io/edgestack/ubuntu-1804-container-disk:x86_64 --amend
-          sudo docker manifest push quay.io/edgestack/ubuntu-1804-container-disk:latest
+          sudo docker manifest push quay.io/edgestack/ubuntu-1804-container-disk:latest --format v2s2
           sudo docker manifest rm quay.io/edgestack/ubuntu-1804-container-disk:latest
 
 
@@ -1016,7 +1016,7 @@ jobs:
           sudo docker manifest create quay.io/edgestack/ubuntu-2004-container-disk:latest \
             quay.io/edgestack/ubuntu-2004-container-disk:aarch64 \
             quay.io/edgestack/ubuntu-2004-container-disk:x86_64 --amend
-          sudo docker manifest push quay.io/edgestack/ubuntu-2004-container-disk:latest
+          sudo docker manifest push quay.io/edgestack/ubuntu-2004-container-disk:latest --format v2s2
           sudo docker manifest rm quay.io/edgestack/ubuntu-2004-container-disk:latest
 
   build-ubuntu-2204-arm64:
@@ -1089,7 +1089,7 @@ jobs:
           sudo docker manifest create quay.io/edgestack/ubuntu-2204-container-disk:latest \
             quay.io/edgestack/ubuntu-2204-container-disk:aarch64 \
             quay.io/edgestack/ubuntu-2204-container-disk:x86_64 --amend
-          sudo docker manifest push quay.io/edgestack/ubuntu-2204-container-disk:latest
+          sudo docker manifest push quay.io/edgestack/ubuntu-2204-container-disk:latest --format v2s2
           sudo docker manifest rm quay.io/edgestack/ubuntu-2204-container-disk:latest
 
   build-ubuntu-2404-arm64:
@@ -1162,7 +1162,7 @@ jobs:
           sudo docker manifest create quay.io/edgestack/ubuntu-2404-container-disk:latest \
             quay.io/edgestack/ubuntu-2404-container-disk:aarch64 \
             quay.io/edgestack/ubuntu-2404-container-disk:x86_64 --amend
-          sudo docker manifest push quay.io/edgestack/ubuntu-2404-container-disk:latest
+          sudo docker manifest push quay.io/edgestack/ubuntu-2404-container-disk:latest --format v2s2
           sudo docker manifest rm quay.io/edgestack/ubuntu-2404-container-disk:latest
 
   build-almalinux-8-arm64:
@@ -1235,7 +1235,7 @@ jobs:
           sudo docker manifest create quay.io/edgestack/almalinux-8-container-disk:latest \
             quay.io/edgestack/almalinux-8-container-disk:aarch64 \
             quay.io/edgestack/almalinux-8-container-disk:x86_64 --amend
-          sudo docker manifest push quay.io/edgestack/almalinux-8-container-disk:latest
+          sudo docker manifest push quay.io/edgestack/almalinux-8-container-disk:latest --format v2s2
           sudo docker manifest rm quay.io/edgestack/almalinux-8-container-disk:latest
 
 
@@ -1309,7 +1309,7 @@ jobs:
           sudo docker manifest create quay.io/edgestack/almalinux-9-container-disk:latest \
             quay.io/edgestack/almalinux-9-container-disk:aarch64 \
             quay.io/edgestack/almalinux-9-container-disk:x86_64 --amend
-          sudo docker manifest push quay.io/edgestack/almalinux-9-container-disk:latest
+          sudo docker manifest push quay.io/edgestack/almalinux-9-container-disk:latest --format v2s2
           sudo docker manifest rm quay.io/edgestack/almalinux-9-container-disk:latest
 
   build-rockylinux-8-arm64:
@@ -1382,7 +1382,7 @@ jobs:
           sudo docker manifest create quay.io/edgestack/rocky-8-uefi-container-disk:latest \
             quay.io/edgestack/rocky-8-uefi-container-disk:aarch64 \
             quay.io/edgestack/rocky-8-uefi-container-disk:x86_64 --amend
-          sudo docker manifest push quay.io/edgestack/rocky-8-uefi-container-disk:latest
+          sudo docker manifest push quay.io/edgestack/rocky-8-uefi-container-disk:latest --format v2s2
           sudo docker manifest rm quay.io/edgestack/rocky-8-uefi-container-disk:latest
 
   build-rockylinux-9-arm64:
@@ -1455,5 +1455,5 @@ jobs:
           sudo docker manifest create quay.io/edgestack/rocky-9-uefi-container-disk:latest \
             quay.io/edgestack/rocky-9-uefi-container-disk:aarch64 \
             quay.io/edgestack/rocky-9-uefi-container-disk:x86_64 --amend
-          sudo docker manifest push quay.io/edgestack/rocky-9-uefi-container-disk:latest
+          sudo docker manifest push quay.io/edgestack/rocky-9-uefi-container-disk:latest --format v2s2
           sudo docker manifest rm quay.io/edgestack/rocky-9-uefi-container-disk:latest
