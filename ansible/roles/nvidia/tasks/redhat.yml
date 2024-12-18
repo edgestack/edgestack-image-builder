@@ -21,13 +21,13 @@
     sudo tee /etc/yum.repos.d/cuda-rhel{{ rhel_version }}.repo
   when: ansible_architecture == "aarch64"
 
-- name: Install kernel-devel and kernel-headers
-  yum:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - "kernel-devel"
-    - "kernel-headers"
+#- name: Install kernel-devel and kernel-headers
+#  yum:
+#    name: "{{ item }}"
+#    state: present
+#  with_items:
+#    - "kernel-devel"
+#    - "kernel-headers"
 
 - name: Install epel-release
   yum:
