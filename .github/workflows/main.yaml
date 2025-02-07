@@ -34,11 +34,6 @@ on:
         required: true
         default: false
         type: boolean
-      fabric_manager:
-        description: 'Install Fabric Manager'
-        required: true
-        default: false
-        type: boolean
       ansible:
         description: 'Install Ansible'
         required: true
@@ -332,7 +327,7 @@ jobs:
       - name: Update Nvidia package options
         run: |
           jq \
-            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}" | .variables.fabric_manager = "${{ github.event.inputs.fabric_manager }}"' \
+            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
             packer/qemu/packer.json > tmp.json
           mv tmp.json packer/qemu/packer.json
 
@@ -1039,7 +1034,7 @@ jobs:
       - name: Update Nvidia package options
         run: |
           jq \
-            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}" | .variables.fabric_manager = "${{ github.event.inputs.fabric_manager }}"' \
+            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
             packer/qemu/packer.json > tmp.json
           mv tmp.json packer/qemu/packer.json
 

@@ -4,19 +4,3 @@
 
 - import_tasks: redhat.yml
   when: ansible_os_family == "RedHat"
-
-- name: Change the default FABRIC_MODE to 1
-  lineinfile:
-    path: /usr/share/nvidia/nvswitch/fabricmanager.cfg
-    regexp: '^FABRIC_MODE=0'
-    line: 'FABRIC_MODE=1'
-    backup: yes
-  when: fabric_manager | bool
-
-- name: Restart fabric-manager
-  systemd:
-    name: nvidia-fabricmanager
-    enabled: yes
-    daemon_reload: yes
-    state: stopped
-  when: fabric_manager | bool
