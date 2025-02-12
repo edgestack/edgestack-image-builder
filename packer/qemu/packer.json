@@ -73,6 +73,8 @@
         "--extra-vars",
         "nvidia_driver={{user `nvidia_driver`}}",
         "--extra-vars",
+        "nvidia_version={{user `nvidia_version`}}",
+        "--extra-vars",
         "nvidia_vgpu_driver={{user `nvidia_vgpu_driver`}}",
         "--extra-vars",
         "jupyter={{user `jupyter`}}",
@@ -107,6 +109,7 @@
     "ssh_password": "builder",
     "ssh_port": "22",
     "nvidia_driver": "false",
+    "nvidia_version": "570",
     "nvidia_vgpu_driver": "false",
     "jupyter": "false",
     "ansible": "false"

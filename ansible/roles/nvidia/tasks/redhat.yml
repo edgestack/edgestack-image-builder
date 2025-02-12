@@ -1,6 +1,6 @@
 ---
 - name: Install libseccomp package
-  yum:
+  dnf:
     name: libseccomp
     state: present
     lock_timeout: 60
@@ -22,7 +22,7 @@
   when: ansible_architecture == "aarch64"
 
 - name: Install kernel-devel and kernel-headers
-  yum:
+  dnf:
     name: "{{ item }}"
     state: present
   with_items:
@@ -30,7 +30,7 @@
     - "kernel-headers"
 
 - name: Install epel-release
-  yum:
+  dnf:
     name: "{{ item }}"
     state: present
   with_items:
@@ -52,6 +52,10 @@
     name: opencl-filesystem
     state: present
   when: ansible_architecture == "aarch64"
+
+- name: Set NVIDIA Driver module version
+  command: dnf module enable -y nvidia-driver:{{ nvidia_version }}-dkms
+  when: not nvidia_vgpu_driver | bool
 
 - name: Install NVIDIA Driver module
   command: dnf module install -y nvidia-driver

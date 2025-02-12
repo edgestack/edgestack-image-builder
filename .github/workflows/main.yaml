@@ -20,10 +20,19 @@ on:
       nvidia_driver:
         description: 'Install NVIDIA driver 
         (should be true to install vGPU driver)
-        (Support Ubuntu, RHEL9)'
+        (Support Ubuntu, RHEL)'
         required: true
         default: false
         type: boolean
+      nvidia_version:
+        description: 'Select NVIDIA driver version'
+        required: false
+        default: '570'
+        type: choice
+        options:
+          - 550
+          - 560
+          - 570
       nvidia_vgpu_driver:
         description: 'Install NVIDIA vGPU Driver'
         required: true
@@ -86,7 +95,7 @@ jobs:
             tag="vgpu_${tag}"
           fi
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            tag="nvidia_${tag}"
+            tag="nvidia_${{ github.event.inputs.nvidia_version }}_${tag}"
           fi
           echo "tag=${tag}" >> $GITHUB_ENV
 
@@ -151,7 +160,7 @@ jobs:
             tag="vgpu_${tag}"
           fi
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            tag="nvidia_${tag}"
+            tag="nvidia_${{ github.event.inputs.nvidia_version }}_${tag}"
           fi
           echo "tag=${tag}" >> $GITHUB_ENV
 
@@ -216,7 +225,7 @@ jobs:
             tag="vgpu_${tag}"
           fi
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            tag="nvidia_${tag}"
+            tag="nvidia_${{ github.event.inputs.nvidia_version }}_${tag}"
           fi
           echo "tag=${tag}" >> $GITHUB_ENV
 
@@ -254,7 +263,7 @@ jobs:
       - name: Update Nvidia package options
         run: |
           jq \
-            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
+            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_version = "${{ github.event.inputs.nvidia_version }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
             packer/qemu/packer.json > tmp.json
           mv tmp.json packer/qemu/packer.json
 
@@ -287,7 +296,7 @@ jobs:
             tag="vgpu_${tag}"
           fi
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            tag="nvidia_${tag}"
+            tag="nvidia_${{ github.event.inputs.nvidia_version }}_${tag}"
           fi
           echo "tag=${tag}" >> $GITHUB_ENV
 
@@ -327,7 +336,7 @@ jobs:
       - name: Update Nvidia package options
         run: |
           jq \
-            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
+            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_version = "${{ github.event.inputs.nvidia_version }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
             packer/qemu/packer.json > tmp.json
           mv tmp.json packer/qemu/packer.json
 
@@ -360,7 +369,7 @@ jobs:
             tag="vgpu_${tag}"
           fi
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            tag="nvidia_${tag}"
+            tag="nvidia_${{ github.event.inputs.nvidia_version }}_${tag}"
           fi
           echo "tag=${tag}" >> $GITHUB_ENV
 
@@ -400,7 +409,7 @@ jobs:
       - name: Update Nvidia package options
         run: |
           jq \
-            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
+            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_version = "${{ github.event.inputs.nvidia_version }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
             packer/qemu/packer.json > tmp.json
           mv tmp.json packer/qemu/packer.json
 
@@ -433,7 +442,7 @@ jobs:
             tag="vgpu_${tag}"
           fi
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            tag="nvidia_${tag}"
+            tag="nvidia_${{ github.event.inputs.nvidia_version }}_${tag}"
           fi
           echo "tag=${tag}" >> $GITHUB_ENV
 
@@ -473,7 +482,7 @@ jobs:
       - name: Update Nvidia package options
         run: |
           jq \
-            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
+            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_version = "${{ github.event.inputs.nvidia_version }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
             packer/qemu/packer.json > tmp.json
           mv tmp.json packer/qemu/packer.json
 
@@ -506,7 +515,7 @@ jobs:
             tag="vgpu_${tag}"
           fi
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            tag="nvidia_${tag}"
+            tag="nvidia_${{ github.event.inputs.nvidia_version }}_${tag}"
           fi
           echo "tag=${tag}" >> $GITHUB_ENV
 
@@ -546,7 +555,7 @@ jobs:
       - name: Update Nvidia package options
         run: |
           jq \
-            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
+            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_version = "${{ github.event.inputs.nvidia_version }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
             packer/qemu/packer.json > tmp.json
           mv tmp.json packer/qemu/packer.json
 
@@ -579,7 +588,7 @@ jobs:
             tag="vgpu_${tag}"
           fi
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            tag="nvidia_${tag}"
+            tag="nvidia_${{ github.event.inputs.nvidia_version }}_${tag}"
           fi
           echo "tag=${tag}" >> $GITHUB_ENV
 
@@ -619,7 +628,7 @@ jobs:
       - name: Update Nvidia package options
         run: |
           jq \
-            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
+            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_version = "${{ github.event.inputs.nvidia_version }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
             packer/qemu/packer.json > tmp.json
           mv tmp.json packer/qemu/packer.json
 
@@ -652,7 +661,7 @@ jobs:
             tag="vgpu_${tag}"
           fi
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            tag="nvidia_${tag}"
+            tag="nvidia_${{ github.event.inputs.nvidia_version }}_${tag}"
           fi
           echo "tag=${tag}" >> $GITHUB_ENV
 
@@ -692,7 +701,7 @@ jobs:
       - name: Update Nvidia package options
         run: |
           jq \
-            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
+            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_version = "${{ github.event.inputs.nvidia_version }}" | .variables.nvidia_vgpu_driver = "${{ github.event.inputs.nvidia_vgpu_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
             packer/qemu/packer.json > tmp.json
           mv tmp.json packer/qemu/packer.json
 
@@ -725,7 +734,7 @@ jobs:
             tag="vgpu_${tag}"
           fi
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            tag="nvidia_${tag}"
+            tag="nvidia_${{ github.event.inputs.nvidia_version }}_${tag}"
           fi
           echo "tag=${tag}" >> $GITHUB_ENV
 
@@ -791,7 +800,7 @@ jobs:
             tag="vgpu_${tag}"
           fi
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            tag="nvidia_${tag}"
+            tag="nvidia_${{ github.event.inputs.nvidia_version }}_${tag}"
           fi
           echo "tag=${tag}" >> $GITHUB_ENV
 
@@ -856,7 +865,7 @@ jobs:
             tag="vgpu_${tag}"
           fi
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            tag="nvidia_${tag}"
+            tag="nvidia_${{ github.event.inputs.nvidia_version }}_${tag}"
           fi
           echo "tag=${tag}" >> $GITHUB_ENV
 
@@ -921,7 +930,7 @@ jobs:
             tag="vgpu_${tag}"
           fi
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            tag="nvidia_${tag}"
+            tag="nvidia_${{ github.event.inputs.nvidia_version }}_${tag}"
           fi
           echo "tag=${tag}" >> $GITHUB_ENV
 
@@ -961,7 +970,7 @@ jobs:
       - name: Update Nvidia package options
         run: |
           jq \
-            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
+            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_version = "${{ github.event.inputs.nvidia_version }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
             packer/qemu/packer.json > tmp.json
           mv tmp.json packer/qemu/packer.json
 
@@ -994,7 +1003,7 @@ jobs:
             tag="vgpu_${tag}"
           fi
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            tag="nvidia_${tag}"
+            tag="nvidia_${{ github.event.inputs.nvidia_version }}_${tag}"
           fi
           echo "tag=${tag}" >> $GITHUB_ENV
 
@@ -1034,7 +1043,7 @@ jobs:
       - name: Update Nvidia package options
         run: |
           jq \
-            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
+            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_version = "${{ github.event.inputs.nvidia_version }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
             packer/qemu/packer.json > tmp.json
           mv tmp.json packer/qemu/packer.json
 
@@ -1067,7 +1076,7 @@ jobs:
             tag="vgpu_${tag}"
           fi
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            tag="nvidia_${tag}"
+            tag="nvidia_${{ github.event.inputs.nvidia_version }}_${tag}"
           fi
           echo "tag=${tag}" >> $GITHUB_ENV
 
@@ -1107,7 +1116,7 @@ jobs:
       - name: Update Nvidia package options
         run: |
           jq \
-            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
+            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_version = "${{ github.event.inputs.nvidia_version }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
             packer/qemu/packer.json > tmp.json
           mv tmp.json packer/qemu/packer.json
 
@@ -1140,7 +1149,7 @@ jobs:
             tag="vgpu_${tag}"
           fi
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            tag="nvidia_${tag}"
+            tag="nvidia_${{ github.event.inputs.nvidia_version }}_${tag}"
           fi
           echo "tag=${tag}" >> $GITHUB_ENV
 
@@ -1180,7 +1189,7 @@ jobs:
       - name: Update Nvidia package options
         run: |
           jq \
-            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
+            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_version = "${{ github.event.inputs.nvidia_version }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
             packer/qemu/packer.json > tmp.json
           mv tmp.json packer/qemu/packer.json
 
@@ -1213,7 +1222,7 @@ jobs:
             tag="vgpu_${tag}"
           fi
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            tag="nvidia_${tag}"
+            tag="nvidia_${{ github.event.inputs.nvidia_version }}_${tag}"
           fi
           echo "tag=${tag}" >> $GITHUB_ENV
 
@@ -1254,7 +1263,7 @@ jobs:
       - name: Update Nvidia package options
         run: |
           jq \
-            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
+            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_version = "${{ github.event.inputs.nvidia_version }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
             packer/qemu/packer.json > tmp.json
           mv tmp.json packer/qemu/packer.json
 
@@ -1287,7 +1296,7 @@ jobs:
             tag="vgpu_${tag}"
           fi
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            tag="nvidia_${tag}"
+            tag="nvidia_${{ github.event.inputs.nvidia_version }}_${tag}"
           fi
           echo "tag=${tag}" >> $GITHUB_ENV
 
@@ -1327,7 +1336,7 @@ jobs:
       - name: Update Nvidia package options
         run: |
           jq \
-            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
+            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_version = "${{ github.event.inputs.nvidia_version }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
             packer/qemu/packer.json > tmp.json
           mv tmp.json packer/qemu/packer.json
 
@@ -1360,7 +1369,7 @@ jobs:
             tag="vgpu_${tag}"
           fi
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            tag="nvidia_${tag}"
+            tag="nvidia_${{ github.event.inputs.nvidia_version }}_${tag}"
           fi
           echo "tag=${tag}" >> $GITHUB_ENV
 
@@ -1400,7 +1409,7 @@ jobs:
       - name: Update Nvidia package options
         run: |
           jq \
-            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
+            '.variables.nvidia_driver = "${{ github.event.inputs.nvidia_driver }}" | .variables.nvidia_version = "${{ github.event.inputs.nvidia_version }}" | .variables.jupyter = "${{ github.event.inputs.jupyter }}"' \
             packer/qemu/packer.json > tmp.json
           mv tmp.json packer/qemu/packer.json
 
@@ -1433,7 +1442,7 @@ jobs:
             tag="vgpu_${tag}"
           fi
           if [ "${{ github.event.inputs.nvidia_driver }}" == "true" ]; then
-            tag="nvidia_${tag}"
+            tag="nvidia_${{ github.event.inputs.nvidia_version }}_${tag}"
           fi
           echo "tag=${tag}" >> $GITHUB_ENV
 

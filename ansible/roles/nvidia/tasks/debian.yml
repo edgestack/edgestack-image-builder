@@ -26,7 +26,7 @@
     state: present
     update_cache: yes
   with_items:
-    - cuda-drivers
+    - cuda-drivers-{{ nvidia_version }}
   when: not nvidia_vgpu_driver | bool
 
 - name: Ensure /etc/vgpu-driver directory exists on target
