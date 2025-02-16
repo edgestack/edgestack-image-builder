@@ -4,8 +4,8 @@
   "ssh_username": "ubuntu",
   "os_display_name": "Ubuntu 22.04",
   "guest_os_type": "ubuntu-64",
-  "iso_url": "https://cloud-images.ubuntu.com/releases/jammy/release-20240626/ubuntu-22.04-server-cloudimg-amd64.img",
-  "iso_checksum": "874a04856aa048309fd2c199aed6aa5a5a2567d33436a79b6c2dfb66736632a0",
+  "iso_url": "https://cloud-images.ubuntu.com/releases/22.04/release-20250128/ubuntu-22.04-server-cloudimg-amd64.img",
+  "iso_checksum": "b6e1e8795c310106e0f73208fcbb25eaa8ab7b748d111d19d2b4eaa11872d1e7",
   "iso_checksum_type": "sha256",
   "shutdown_command": "shutdown -P now",
   "ansible_python_interpreter": "/usr/bin/python3"
