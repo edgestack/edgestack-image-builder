@@ -4,8 +4,8 @@
   "ssh_username": "ubuntu",
   "os_display_name": "Ubuntu 20.04",
   "guest_os_type": "ubuntu-64",
-  "iso_url": "https://cloud-images.ubuntu.com/releases/focal/release-20240612/ubuntu-20.04-server-cloudimg-amd64.img",
-  "iso_checksum": "7fce49f6c9afd2cdd9c26618b056f8806e500dd4d6eff516c9c6b5fab12e7f79",
+  "iso_url": "https://cloud-images.ubuntu.com/releases/focal/release-20250127/ubuntu-20.04-server-cloudimg-amd64.img",
+  "iso_checksum": "fd820773da1f02cba36f6b1dea08d4b354d084bf636839400817cda34d905d14",
   "iso_checksum_type": "sha256",
   "shutdown_command": "shutdown -P now",
   "ansible_python_interpreter": "/usr/bin/python3"
