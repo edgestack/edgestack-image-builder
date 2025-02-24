@@ -10,15 +10,11 @@
     rhel_version: "{{ build_name | regex_search('\\d+$') }}"
 
 - name: Configure nvidia driver repository
-  shell: |
-    curl -s -L https://developer.download.nvidia.com/compute/cuda/repos/rhel{{ rhel_version }}/x86_64/cuda-rhel{{ rhel_version }}.repo | \
-    sudo tee /etc/yum.repos.d/cuda-rhel{{ rhel_version }}.repo
+  command: dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel{{ rhel_version }}/x86_64/cuda-rhel{{ rhel_version }}.repo
   when: ansible_architecture == "x86_64"
 
 - name: Configure nvidia driver repository
-  shell: |
-    curl -s -L https://developer.download.nvidia.com/compute/cuda/repos/rhel{{ rhel_version }}/sbsa/cuda-rhel{{ rhel_version }}.repo | \
-    sudo tee /etc/yum.repos.d/cuda-rhel{{ rhel_version }}.repo
+  command: dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel{{ rhel_version }}/sbsa/cuda-rhel{{ rhel_version }}.repo
   when: ansible_architecture == "aarch64"
 
 - name: Install kernel-devel and kernel-headers
@@ -54,7 +50,7 @@
   when: ansible_architecture == "aarch64"
 
 - name: Set NVIDIA Driver module version
-  command: dnf module enable -y nvidia-driver:{{ nvidia_version }}-dkms
+  command: dnf module enable -y nvidia-driver:{{ nvidia_version }}
   when: not nvidia_vgpu_driver | bool
 
 - name: Install NVIDIA Driver module
